@@ -12,18 +12,8 @@
 // Data Section
     .data
 
-    .global VETTORE
 VETTORE:
-    .int 0
-    .int 0
-    .int 0
-    .int 0
-    .int 0
-    .int 0
-    .int 0
-    .int 0
-    .int 0
-    .int 0
+    .int 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 STRINGA_INSERIMENTO:
     .string "Inserimento dei 10 interi che compongono il vettore...\n"
@@ -38,28 +28,16 @@ STRINGS_FORMAT_I:
 	.text
 
 main:
-    pushq   %rbp
+    push    %rbp
     movq    %rsp, %rbp
-    subq    $4, %rsp
-    leaq    STRINGA_INSERIMENTO(%rip), %rdi
-    callq   puts
-    movq    $3, -4(%rbp)
-main_insert:
-    movq    -4(%rbp), %rsi
-    incq    %rsi
-    leaq    STRINGA_INSERIMENTO_ELEMENTO(%rip), %rdi
-    xorq    %rax, %rax
-    callq   printf
-    leaq    VETTORE(%rip), %rax
-    movq    (%rbp), %rbx
-    leaq    (%rax, %rbx,4), %rsi
+    
     leaq    STRINGS_FORMAT_I(%rip), %rdi
+    leaq    VETTORE(%rip), %rax
+    movq    $3, %rbx
+    leaq    (%rax, %rbx, 4), %rsi
     xorq    %rax, %rax
-    callq   scanf
-    incq    (%rbp)
-    cmpq    $10, (%rbp)
-    jl      main_insert
+    call    scanf
+    xorq    %rax, %rax
     movq    %rbp, %rsp
-    popq    %rbp
-    xorq    %rax, %rax
-    retq
+    pop     %rbp
+    ret
