@@ -30,7 +30,7 @@ STRINGS_FORMAT_I:
 main:
     push    %rbp
     movq    %rsp, %rbp
-    subq    $4, %rsp
+    subq    $8, %rsp
     leaq    STRINGA_INSERIMENTO(%rip), %rdi
     xorl    %eax, %eax
     call    puts
@@ -44,7 +44,7 @@ main:
     leaq    (%rax, %rbx, 4), %rsi
     xorq    %rax, %rax
     call    scanf
-    xorq    %rax, %rax
     movq    %rbp, %rsp
     pop     %rbp
+    xorq    %rax, %rax
     ret
