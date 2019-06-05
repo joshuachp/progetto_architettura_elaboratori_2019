@@ -16,7 +16,7 @@ VETTORE:
     .int 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 STRINGA_INSERIMENTO:
-    .string "Inserimento dei 10 interi che compongono il vettore...\n"
+    .string "Inserimento dei 10 interi che compongono il vettore..."
 
 STRINGA_INSERIMENTO_ELEMENTO:
     .string "Inserire l'intero in posizione %i: "
@@ -30,7 +30,14 @@ STRINGS_FORMAT_I:
 main:
     push    %rbp
     movq    %rsp, %rbp
-    
+    subq    $4, %rsp
+    leaq    STRINGA_INSERIMENTO(%rip), %rdi
+    xorl    %eax, %eax
+    call    puts
+    movq    $0, -4(%ebp)
+    incq    -4(%ebp)
+    cmpq    $10, -4(%rbp)
+    jl      main
     leaq    STRINGS_FORMAT_I(%rip), %rdi
     leaq    VETTORE(%rip), %rax
     movq    $3, %rbx
