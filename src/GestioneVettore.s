@@ -29,22 +29,13 @@ STRINGS_FORMAT_I:
 
 main:
     push    %rbp
-    movq    %rsp, %rbp
-    subq    $8, %rsp
-    leaq    STRINGA_INSERIMENTO(%rip), %rdi
-    xorl    %eax, %eax
-    call    puts
-    movq    $0, -4(%ebp)
-    incq    -4(%ebp)
-    cmpq    $10, -4(%rbp)
-    jl      main
-    leaq    STRINGS_FORMAT_I(%rip), %rdi
-    leaq    VETTORE(%rip), %rax
-    movq    $3, %rbx
-    leaq    (%rax, %rbx, 4), %rsi
-    xorq    %rax, %rax
+    mov     %rsp, %rbp
+    sub     $0x10, %rsp
+    lea     -0xc(%rbp), %rsi
+    xor     %rax, %rax
+    lea     STRINGS_FORMAT_I(%rip), %rdi
     call    scanf
-    movq    %rbp, %rsp
+    mov     %rbp, %rsp
     pop     %rbp
-    xorq    %rax, %rax
+    xor     %rax, %rax
     ret
