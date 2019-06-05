@@ -13,10 +13,10 @@ STRINGA_OPZIONI:
 
 stampaOpzioni:
     push    %rbp
-    movq    %rsp, %rbp
-    leaq    STRINGA_OPZIONI(%rip), %rdi
-    xorq    %rax, %rax
+    mov     %rsp, %rbp
+    lea     STRINGA_OPZIONI(%rip), %rdi
+    xor     %rax, %rax
     call    puts  
-    movq    %rbp, %rsp
+    mov     %rbp, %rsp
     pop     %rbp
     ret
