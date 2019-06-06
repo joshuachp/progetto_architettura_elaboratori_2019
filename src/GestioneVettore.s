@@ -2,9 +2,12 @@
     Punto di entrata dell'appicazione
 */
 
-    .type puts, @function
+// Funzioni esterne
+
     .type printf, @function
     .type scanf, @function
+
+// Funzioni interne
 
 	.global main
 	.type main, @function
@@ -12,11 +15,16 @@
 // Data Section
     .data
 
+    .global VETTORE
 VETTORE:
     .int 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
+    .global LUNGHEZZA_VETTORE
+LUNGHEZZA_VETTORE:
+    .int 10
+    
 STRINGA_INSERIMENTO:
-    .string "Inserimento dei 10 interi che compongono il vettore..."
+    .string "Inserimento dei %i interi che compongono il vettore...\n"
 
 STRINGA_INSERIMENTO_ELEMENTO:
     .string "Inserire l'intero in posizione %i: "
@@ -29,22 +37,35 @@ STRINGS_FORMAT_I:
 
 main:
     push    %rbp
-    movq    %rsp, %rbp
-    subq    $4, %rsp
-    leaq    STRINGA_INSERIMENTO(%rip), %rdi
-    xorl    %eax, %eax
-    call    puts
-    movq    $0, -4(%ebp)
-    incq    -4(%ebp)
-    cmpq    $10, -4(%rbp)
-    jl      main
-    leaq    STRINGS_FORMAT_I(%rip), %rdi
-    leaq    VETTORE(%rip), %rax
-    movq    $3, %rbx
-    leaq    (%rax, %rbx, 4), %rsi
-    xorq    %rax, %rax
+    mov     %rsp, %rbp
+    sub     $0x10, %rsp
+    mov     LUNGHEZZA_VETTORE(%rip), %rsi
+    lea     STRINGA_INSERIMENTO(%rip), %rdi
+    xor     %rax, %rax
+    call    printf
+    movl     $0, -0xc(%rbp)
+    jmp     main_insert_loop_condition
+main_insert_loop:
+    mov    -0xc(%rbp), %esi
+    add     $1, %esi
+    lea     STRINGA_INSERIMENTO_ELEMENTO(%rip), %rdi
+    xor     %rax, %rax
+    call    printf
+    lea     VETTORE(%rip), %rax
+    xor     %rbx, %rbx
+    mov     -0xc(%rbp), %ebx
+    lea     (%rax, %rbx, 4), %rsi
+    lea     STRINGS_FORMAT_I(%rip), %rdi
+    xor     %rax, %rax
     call    scanf
-    xorq    %rax, %rax
-    movq    %rbp, %rsp
+    addl    $1, -0xc(%rbp)
+main_insert_loop_condition:
+    mov     LUNGHEZZA_VETTORE(%rip), %eax
+    cmp     %eax, -0xc(%rbp)
+    jl      main_insert_loop
+    call    stampaOpzioni
+    call    numeroPari
+    mov     %rbp, %rsp
     pop     %rbp
+    xor     %rax, %rax
     ret
