@@ -15,12 +15,14 @@
 // Data Section
     .data
 
+    .global VETTORE
 VETTORE:
     .int 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
+    .global LUNGHEZZA_VETTORE
 LUNGHEZZA_VETTORE:
     .int 10
-
+    
 STRINGA_INSERIMENTO:
     .string "Inserimento dei %i interi che compongono il vettore...\n"
 
@@ -61,6 +63,8 @@ main_insert_loop_condition:
     mov     LUNGHEZZA_VETTORE(%rip), %eax
     cmp     %eax, -0xc(%rbp)
     jl      main_insert_loop
+    call    stampaOpzioni
+    call    numeroPari
     mov     %rbp, %rsp
     pop     %rbp
     xor     %rax, %rax
