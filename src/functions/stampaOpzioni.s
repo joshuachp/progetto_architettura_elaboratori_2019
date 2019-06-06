@@ -1,6 +1,10 @@
 /* ciao mamma */
     .type puts, @function
 
+
+    .global main
+    .type main, @function
+
     .global stampaOpzioni
     .type stampaOpzioni, @function
 
@@ -21,10 +25,6 @@ stampaOpzioni:
     mov     %rbp, %rsp /* ripristino stack pointer*/
     pop     %rbp /* ripristino base pointer*/
     ret
-
-
-.global main
-.type main, @function
 
 main: 
     push    %rbp
