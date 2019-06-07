@@ -46,7 +46,16 @@ main:
     lea     STRINGA_INSERIMENTO(%rip), %rdi
     xor     %rax, %rax
     call    printf
-    movl     $0, -0xc(%rbp)
+    movl    $0, -0xc(%rbp)
+    mov     $1, %esi
+    lea     STRINGA_INSERIMENTO_ELEMENTO(%rip), %rdi
+    xor     %rax, %rax
+    call    printf
+    lea     VETTORE(%rip), %rsi
+    lea     STRINGA_FORMAT_I(%rip), %rdi
+    xor     %rax, %rax
+    call    scanf
+    movl    $1, -0xc(%rbp)
     jmp     main_insert_loop_condition
 main_insert_loop:
     mov    -0xc(%rbp), %esi

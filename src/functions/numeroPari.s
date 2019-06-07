@@ -16,7 +16,7 @@ numeroPari:
     jmp     numeroPari_condizione
 numeroPari_for:
     lea     VETTORE(%rip), %rdx # Importazione vettore
-    lea     (%rdx, %rcx, 4), %rax # VETTORE[i]
+    mov     (%rdx, %rcx, 4), %eax # VETTORE[i]
     xor     %rdx, %rdx
     div     %ebx
     inc     %rcx 
