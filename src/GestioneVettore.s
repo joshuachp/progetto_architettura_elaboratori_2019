@@ -70,24 +70,24 @@ STRINGA_OPZIONI:
 main:
     push    %rbp
     mov     %rsp, %rbp
-    # Crea 4 byte di spazio per il contatore del ciclo
+    // Crea 4 byte di spazio per il contatore del ciclo
     sub     $0x10, %rsp
-    # Carica e printa la stringa di inserimento
+    // Carica e printa la stringa di inserimento
     mov     LUNGHEZZA_VETTORE(%rip), %rsi
     lea     STRINGA_INSERIMENTO(%rip), %rdi
     xor     %rax, %rax
     call    printf
-    # Inizializza un ciclo for per l'inserimento
+    // Inizializza un ciclo for per l'inserimento
     movl    $0, -0xc(%rbp)
     jmp     main_insert_loop_condition
 main_insert_loop:
-    # Carica e stampa la stringa di inserimento dell'elemento
+    // Carica e stampa la stringa di inserimento dell'elemento
     mov    -0xc(%rbp), %esi
     add     $1, %esi
     lea     STRINGA_INSERIMENTO_ELEMENTO(%rip), %rdi
     xor     %rax, %rax
     call    printf
-    # Inserisce l'elemento nel vettore
+    // Inserisce l'elemento nel vettore
     lea     VETTORE(%rip), %rax
     xor     %rbx, %rbx
     mov     -0xc(%rbp), %ebx
@@ -95,7 +95,7 @@ main_insert_loop:
     lea     STRINGA_FORMAT_I(%rip), %rdi
     xor     %rax, %rax
     call    scanf
-    # Controllo il successo dello scanf
+    // Controllo il successo dello scanf
     cmp     $1, %eax
     je     main_insert_success1
     mov     $1, %rdi
@@ -106,9 +106,9 @@ main_insert_loop_condition:
     mov     LUNGHEZZA_VETTORE(%rip), %eax
     cmp     %eax, -0xc(%rbp)
     jl      main_insert_loop
-    # Stammpa il meno delle opzioni
+    // Stammpa il meno delle opzioni
     call    stampaOpzioni
-    # Ciclo per l'inserimento delle opzioni
+    // Ciclo per l'inserimento delle opzioni
 main_options_loop:
     lea     STRINGA_OPZIONI(%rip), %rdi
     xor    %rax, %rax
@@ -117,15 +117,15 @@ main_options_loop:
     lea     STRINGA_FORMAT_I(%rip), %rdi
     xor     %rax, %rax
     call    scanf
-    # Controllo il successo dello scanf
+    // Controllo il successo dello scanf
     cmp     $1, %eax
     je     main_insert_success2
     mov     $1, %rdi
     call    exit
 main_insert_success2:
-    # Esegue l'opzione selezzionata
+    // Esegue l'opzione selezzionata
     /* code */
-    # Se opzione è zero esce dal ciclo
+    // Se opzione è zero esce dal ciclo
     cmpl    $0, -0xc(%rbp)
     jne     main_options_loop
     mov     %rbp, %rsp
