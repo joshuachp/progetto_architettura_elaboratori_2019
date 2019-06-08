@@ -97,6 +97,7 @@ main_insert_loop:
     call    scanf
     // Controllo il successo dello scanf
     cmp     $1, %eax
+    // Se scanf ha ricevuto un numero di inputs diverso da 1 esce dal programma
     je     main_insert_success1
     mov     $1, %rdi
     call    exit
@@ -105,6 +106,7 @@ main_insert_success1:
 main_insert_loop_condition:
     mov     LUNGHEZZA_VETTORE(%rip), %eax
     cmp     %eax, -0xc(%rbp)
+    // Continua il ciclo finche il contatore è minore di LUNGHEZZA_VETTORE
     jl      main_insert_loop
     // Stammpa il meno delle opzioni
     call    stampaOpzioni
@@ -119,14 +121,15 @@ main_options_loop:
     call    scanf
     // Controllo il successo dello scanf
     cmp     $1, %eax
+    // Se scanf ha ricevuto un numero di inputs diverso da 1 esce dal programma
     je     main_insert_success2
     mov     $1, %rdi
     call    exit
 main_insert_success2:
     // Esegue l'opzione selezzionata
     /* code */
-    // Se opzione è zero esce dal ciclo
     cmpl    $0, -0xc(%rbp)
+    // Continua a richidere opzioni fino a che non riceve 0
     jne     main_options_loop
     mov     %rbp, %rsp
     pop     %rbp
