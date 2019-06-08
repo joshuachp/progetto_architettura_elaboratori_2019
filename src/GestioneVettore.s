@@ -23,7 +23,7 @@ VETTORE:
     .global LUNGHEZZA_VETTORE
 LUNGHEZZA_VETTORE:
     .int 10
-    
+
 STRINGA_INSERIMENTO:
     .string "Inserimento dei %i interi che compongono il vettore...\n"
 
@@ -47,15 +47,6 @@ main:
     xor     %rax, %rax
     call    printf
     movl    $0, -0xc(%rbp)
-    mov     $1, %esi
-    lea     STRINGA_INSERIMENTO_ELEMENTO(%rip), %rdi
-    xor     %rax, %rax
-    call    printf
-    lea     VETTORE(%rip), %rsi
-    lea     STRINGA_FORMAT_I(%rip), %rdi
-    xor     %rax, %rax
-    call    scanf
-    movl    $1, -0xc(%rbp)
     jmp     main_insert_loop_condition
 main_insert_loop:
     mov    -0xc(%rbp), %esi
@@ -70,6 +61,11 @@ main_insert_loop:
     lea     STRINGA_FORMAT_I(%rip), %rdi
     xor     %rax, %rax
     call    scanf
+    cmp     $1, %eax
+    je     main_insert_success
+    mov     $1, %rdi
+    call    exit
+main_insert_success:
     addl    $1, -0xc(%rbp)
 main_insert_loop_condition:
     mov     LUNGHEZZA_VETTORE(%rip), %eax
@@ -84,6 +80,11 @@ main_options_loop:
     lea     STRINGA_FORMAT_I(%rip), %rdi
     xor     %rax, %rax
     call    scanf
+    cmp     $1, %eax
+    je     main_insert_success
+    mov     $1, %rdi
+    call    exit
+main_insert_success:
     /*
         esegui
     */
