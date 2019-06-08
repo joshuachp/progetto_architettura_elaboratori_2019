@@ -62,10 +62,10 @@ main_insert_loop:
     xor     %rax, %rax
     call    scanf
     cmp     $1, %eax
-    je     main_insert_success
+    je     main_insert_success1
     mov     $1, %rdi
     call    exit
-main_insert_success:
+main_insert_success1:
     addl    $1, -0xc(%rbp)
 main_insert_loop_condition:
     mov     LUNGHEZZA_VETTORE(%rip), %eax
@@ -81,10 +81,10 @@ main_options_loop:
     xor     %rax, %rax
     call    scanf
     cmp     $1, %eax
-    je     main_insert_success
+    je     main_insert_success2
     mov     $1, %rdi
     call    exit
-main_insert_success:
+main_insert_success2:
     /*
         esegui
     */
