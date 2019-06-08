@@ -3,6 +3,7 @@ project(assembly C)
 
 set(ASSEMBLY_SRC 
     src/GestioneVettore.s
+    src/data/data.s
     src/functions/stampaOpzioni.s 
     src/functions/numeroPari.s)
 
