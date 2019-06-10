@@ -7,6 +7,7 @@
 
     .type puts, @function
     .type printf, @function
+    .type scanf, @function
 
 // Data section
 
@@ -43,6 +44,41 @@ STRINGA_NUMERI_PARI:
 STRINGA_NUMERI_DISPARI:
     .string "Numero di valori dispari inseriti: %i\n"
 
+/*
+    STRINGA_INTERO_DA_CERCARE:
+        Stringa stampata prima dell'inserimento dell'intero da cercare
+    @type (string)
+*/
+STRINGA_INTERO_DA_CERCARE:
+    .string "Inserire l'intero da cercare: "
+
+/*
+    STRINGA_FORMAT_I:
+        Stringa per format per l'inserimento di un intero tramite scanf
+
+    @type (string)
+*/
+STRINGA_FORMAT_I:
+    .string "%i"
+
+/*
+    STRINGA_POSIZIONE_VALORE:
+        Stringa per format per il printf del cercaValote
+
+    @type (string)
+*/
+STRINGA_POSIZIONE_VALORE:
+    .string "Posizione del valore %i: %i\n"
+
+/*
+    STRINGA_VALORE_NON_TROVATO:
+        Stringa per format per il printf del valore non trovato
+
+    @type (string)
+*/
+STRINGA_VALORE_NON_TROVATO:
+    .string "Valore %i non trovato\n"
+
 // Code section
 
     .text
@@ -61,7 +97,8 @@ STRINGA_NUMERI_DISPARI:
 eseguiOpzione:
     push    %rbp
     mov     %rsp, %rbp
-    sub     $0x8, %rsp
+    sub     $0x10, %rsp
+    // Variabile booleana stampareOrdineInverso
     movb    $1, -0x1(%rbp)
     cmp     $0, %edi
     // Case uscita dall'operazione
@@ -76,6 +113,7 @@ eseguiOpzione:
     // Case stampa numeri pari e dispari
     je      eseguiOpzione_switch_3
     cmp     $4, %edi
+    // Case cerca valore in VETTORE
     je      eseguiOpzione_switch_4
     cmp     $5, %edi
     je      eseguiOpzione_switch_5
@@ -126,6 +164,36 @@ eseguiOpzione_switch_3:
     call    printf
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_4:
+    // Riceve in input un inrero e stampa laposizione o se non è contenuti in VETTORE
+    lea     STRINGA_INTERO_DA_CERCARE(%rip), %rdi
+    xor     %rax, %rax
+    call    puts
+    lea     -0xb(%rbp), %rsi
+    lea     STRINGA_FORMAT_I(%rip), %rdi
+    xor     %rax, %rax
+    call    scanf
+    // Se scanf ha ricevuto un numero di inputs diverso da 1 esce dal programma
+    cmp     $1, %rax
+    je      eseguiOpzione_insert_success1
+    mov     $1, %rdi
+    call    exit
+eseguiOpzione_insert_success1:
+    mov     %rbx, %rdi
+    // call     cercaValore
+    cmp     $0, %rax
+    jl      eseguiOpzione_switch_4_if
+    add     $1, %rax
+    mov     %rax, %rdx
+    mov     -0xb(%rbp), %esi
+    lea     STRINGA_POSIZIONE_VALORE(%rip), %rdi
+    xor     %rax, %rax
+    call    printf
+    jmp     eseguiOpzione_switch_4_endif
+eseguiOpzione_switch_4_if:
+    mov     -0xb(%rbp), %esi
+    lea     STRINGA_VALORE_NON_TROVATO(%rip), %rdi
+    call    printf
+eseguiOpzione_switch_4_endif:
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_5:
     jmp     eseguiOpzione_exit
