@@ -127,7 +127,8 @@ main_options_loop:
     call    exit
 main_insert_success2:
     // Esegue l'opzione selezzionata
-    /* code */
+    mov     -0xc(%rbp), %rdi
+    call    eseguiOpzione
     cmpl    $0, -0xc(%rbp)
     // Continua a richidere opzioni fino a che non riceve 0
     jne     main_options_loop
