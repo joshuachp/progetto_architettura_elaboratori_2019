@@ -61,8 +61,8 @@ STRINGA_NUMERI_DISPARI:
 eseguiOpzione:
     push    %rbp
     mov     %rsp, %rbp
-    sub     $0x10, %rsp
-    movb    $1, -0x9(%rbp)
+    sub     $0x8, %rsp
+    movb    $1, -0x1(%rbp)
     cmp     $0, %edi
     // Case uscita dall'operazione
     je      eseguiOpzione_switch_0
@@ -100,25 +100,25 @@ eseguiOpzione_switch_0:
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_1:
     // Imposta stampaOrdineInverso a false e continua al case stampa vettore
-    movb     $0, -0x9(%rbp)
+    movb     $0, -0x1(%rbp)
 eseguiOpzione_switch_2:
     // Stampa il vettore in ordine inverso se stampaOrdineInverso è true se no stampa il vettore
     xor     %rax, %rax
-    movb    -0x9(%rbp), %al
+    movb    -0x8(%rbp), %al
     mov     %rax, %rdi
     // call stampaVettore
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_3:
     // Conta il numero di pari e lo sottrae al numero totale per i dispari
     call    numeroPari
-    movl     %eax, -0xd(%rbx)
+    mov    %eax, -0x8(%rbp)
     mov     %rax, %rsi
     lea     STRINGA_NUMERI_PARI(%rip), %rdi
     xor     %rax, %rax
     call    printf
     xor     %rax, %rax
     mov     LUNGHEZZA_VETTORE(%rip), %eax
-    mov     -0xd(%rbp), %ebx
+    mov     -0x8(%rbp), %ebx
     sub     %ebx, %eax
     mov     %rax, %rsi
     lea     STRINGA_NUMERI_DISPARI(%rip), %rdi
@@ -149,4 +149,3 @@ eseguiOpzione_exit:
     mov     %rbp, %rsp
     pop     %rbp
     ret
-

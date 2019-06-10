@@ -78,11 +78,11 @@ main:
     xor     %rax, %rax
     call    printf
     // Inizializza un ciclo for per l'inserimento
-    movl    $0, -0xc(%rbp)
+    movl    $0, -0x4(%rbp)
     jmp     main_insert_loop_condition
 main_insert_loop:
     // Carica e stampa la stringa di inserimento dell'elemento
-    mov    -0xc(%rbp), %esi
+    mov    -0x4(%rbp), %esi
     add     $1, %esi
     lea     STRINGA_INSERIMENTO_ELEMENTO(%rip), %rdi
     xor     %rax, %rax
@@ -90,7 +90,7 @@ main_insert_loop:
     // Inserisce l'elemento nel vettore
     lea     VETTORE(%rip), %rax
     xor     %rbx, %rbx
-    mov     -0xc(%rbp), %ebx
+    mov     -0x4(%rbp), %ebx
     lea     (%rax, %rbx, 4), %rsi
     lea     STRINGA_FORMAT_I(%rip), %rdi
     xor     %rax, %rax
@@ -102,10 +102,10 @@ main_insert_loop:
     mov     $1, %rdi
     call    exit
 main_insert_success1:
-    addl    $1, -0xc(%rbp)
+    addl    $1, -0x4(%rbp)
 main_insert_loop_condition:
     mov     LUNGHEZZA_VETTORE(%rip), %eax
-    cmp     %eax, -0xc(%rbp)
+    cmp     %eax, -0x4(%rbp)
     // Continua il ciclo finche il contatore è minore di LUNGHEZZA_VETTORE
     jl      main_insert_loop
     // Stammpa il meno delle opzioni
@@ -115,7 +115,7 @@ main_options_loop:
     lea     STRINGA_OPZIONI(%rip), %rdi
     xor    %rax, %rax
     call    puts
-    lea     -0xc(%rbp), %rsi
+    lea     -0x8(%rbp), %rsi
     lea     STRINGA_FORMAT_I(%rip), %rdi
     xor     %rax, %rax
     call    scanf
@@ -127,9 +127,9 @@ main_options_loop:
     call    exit
 main_insert_success2:
     // Esegue l'opzione selezzionata
-    mov     -0xc(%rbp), %rdi
+    mov     -0x8(%rbp), %rdi
     call    eseguiOpzione
-    cmpl    $0, -0xc(%rbp)
+    cmpl    $0, -0x8(%rbp)
     // Continua a richidere opzioni fino a che non riceve 0
     jne     main_options_loop
     mov     %rbp, %rsp
