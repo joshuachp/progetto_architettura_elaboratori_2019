@@ -300,7 +300,7 @@ eseguiOpzione_switch_9:
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_10:
     // Calcola la media e la stampa a video
-    // call    calcolaMediaIntera
+    call    calcolaMediaIntera
     mov     %rax, %rsi
     lea     STRINGA_MEDIA(%rip), %rdi
     xor     %rax, %rax
