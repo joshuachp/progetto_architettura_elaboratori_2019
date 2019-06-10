@@ -79,6 +79,60 @@ STRINGA_POSIZIONE_VALORE:
 STRINGA_VALORE_NON_TROVATO:
     .string "Valore %i non trovato\n"
 
+/*
+    STRINGA_VALORE_MAX:
+        Stringa per format per il printf del valore massimo
+
+    @type (string)
+*/
+STRINGA_VALORE_MAX:
+    .string "Massimo valore inserito: %i\n"
+
+/*
+    STRINGA_POSIZIONE_MAX:
+        Stringa per format per il printf della posizione del valore massimo
+
+    @type (string)
+*/
+STRINGA_POSIZIONE_MAX:
+    .string "Posizione del massimo valore inserito: %i\n"
+
+/*
+    STRINGA_VALORE_MIN:
+        Stringa per format per il printf del valore minimo
+
+    @type (string)
+*/
+STRINGA_VALORE_MIN:
+    .string "Minimo valore inserito: %i\n"
+
+/*
+    STRINGA_POSIZIONE_MIN:
+        Stringa per format per il printf della posizione del valore minimo
+
+    @type (string)
+*/
+STRINGA_POSIZIONE_MIN:
+    .string "Posizione del minimo valore inserito: %i\n"
+
+/*
+    STRINGA_VALORE_FREQ:
+        Stringa per format per il printf del valore più frequente
+
+    @type (string)
+*/
+STRINGA_VALORE_FREQ:
+    .string "Valore inserito con maggior frequenza: %i\n"
+
+/*
+    STRINGA_MEDIA:
+        Stringa per format per il printf della media intera
+
+    @type (string)
+*/
+STRINGA_MEDIA:
+    .string "Media valori: %i\n"
+
 // Code section
 
     .text
@@ -116,18 +170,25 @@ eseguiOpzione:
     // Case cerca valore in VETTORE
     je      eseguiOpzione_switch_4
     cmp     $5, %edi
+    // Case valore massimo
     je      eseguiOpzione_switch_5
     cmp     $6, %edi
+    // Case posizione massimo
     je      eseguiOpzione_switch_6
     cmp     $7, %edi
+    // Case valore minimo
     je      eseguiOpzione_switch_7
     cmp     $8, %edi
+    // Case posizione minimo
     je      eseguiOpzione_switch_8
     cmp     $9, %edi
+    // Case valore più frequente
     je      eseguiOpzione_switch_9
     cmp     $10, %edi
+    // Case media intera
     je      eseguiOpzione_switch_10
     cmp     $-1, %edi
+    // Case stampa opzioni
     je      eseguiOpzione_switch_m1
     // Default case opzione non supportata
     jmp     eseguiOpzione_switch_default
@@ -196,18 +257,57 @@ eseguiOpzione_switch_4_if:
 eseguiOpzione_switch_4_endif:
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_5:
+    // Calcola il valore massimo e lo stampa a video
+    // call    calcolaMax
+    mov     %rax, %rsi
+    lea     STRINGA_VALORE_MAX(%rip), %rdi
+    xor     %rax, %rax
+    call    printf
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_6:
+    // Stampa a video la posizione del valore massimo inserito
+    // call     posizioneMax
+    add     $1, %rax
+    mov     %rax, %rsi
+    lea     STRINGA_POSIZIONE_MAX(%rip), %rdi
+    xor     %rax, %rax
+    call    printf
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_7:
+    // Calcola il valore massimo e lo stampa a video
+    // call    calcolaMin
+    mov     %rax, %rsi
+    lea     STRINGA_VALORE_MIN(%rip), %rdi
+    xor     %rax, %rax
+    call    printf
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_8:
+    // Stampa a video la posizione del valore minimo inserito
+    // call     posizioneMin
+    add     $1, %rax
+    mov     %rax, %rsi
+    lea     STRINGA_POSIZIONE_MIN(%rip), %rdi
+    xor     %rax, %rax
+    call    printf
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_9:
+    // Calcola il valore più frequente e lo stampa a video
+    // call    valoreFrequente
+    mov     %rax, %rsi
+    lea     STRINGA_VALORE_FREQ(%rip), %rdi
+    xor     %rax, %rax
+    call    printf
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_10:
+    // Calcola la media e la stampa a video
+    // call    calcolaMediaIntera
+    mov     %rax, %rsi
+    lea     STRINGA_MEDIA(%rip), %rdi
+    xor     %rax, %rax
+    call    printf
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_m1:
+    call    stampaOpzioni
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_default:
     lea     STRINGA_OPT_NON_SUPPORTATA(%rip), %rdi
