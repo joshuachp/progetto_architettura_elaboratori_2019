@@ -111,7 +111,7 @@ eseguiOpzione_switch_2:
 eseguiOpzione_switch_3:
     // Conta il numero di pari e lo sottrae al numero totale per i dispari
     call    numeroPari
-    mov    %eax, -0x8(%rbp)
+    mov     %eax, -0x8(%rbp)
     mov     %rax, %rsi
     lea     STRINGA_NUMERI_PARI(%rip), %rdi
     xor     %rax, %rax

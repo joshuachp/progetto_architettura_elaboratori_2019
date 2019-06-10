@@ -70,7 +70,7 @@ STRINGA_OPZIONI:
 main:
     push    %rbp
     mov     %rsp, %rbp
-    // Crea 4 byte di spazio per il contatore del ciclo
+    // Crea 16 byte di spazio per il contatore del ciclo e scanf
     sub     $0x10, %rsp
     // Carica e printa la stringa di inserimento
     mov     LUNGHEZZA_VETTORE(%rip), %rsi
@@ -82,7 +82,7 @@ main:
     jmp     main_insert_loop_condition
 main_insert_loop:
     // Carica e stampa la stringa di inserimento dell'elemento
-    mov    -0x4(%rbp), %esi
+    mov     -0x4(%rbp), %esi
     add     $1, %esi
     lea     STRINGA_INSERIMENTO_ELEMENTO(%rip), %rdi
     xor     %rax, %rax
@@ -113,7 +113,7 @@ main_insert_loop_condition:
     // Ciclo per l'inserimento delle opzioni
 main_options_loop:
     lea     STRINGA_OPZIONI(%rip), %rdi
-    xor    %rax, %rax
+    xor     %rax, %rax
     call    puts
     lea     -0x8(%rbp), %rsi
     lea     STRINGA_FORMAT_I(%rip), %rdi
@@ -122,7 +122,7 @@ main_options_loop:
     // Controllo il successo dello scanf
     cmp     $1, %eax
     // Se scanf ha ricevuto un numero di inputs diverso da 1 esce dal programma
-    je     main_insert_success2
+    je      main_insert_success2
     mov     $1, %rdi
     call    exit
 main_insert_success2:
