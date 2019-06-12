@@ -25,7 +25,7 @@ numeroPari:
     // Contatore ciclo.
     mov     $0, %rcx
     // Contatore numeri pari.
-    movq    $0, -8(%rbp)
+    movl    $0, -4(%rbp)
     // Divisore. 
     mov     $2, %ebx
     // Condizione del for.
@@ -39,15 +39,16 @@ numeroPari_for:
     cmp     $1, %rdx
     // Se presente il resto non incremento il contatore pari.
     je      numeroPari_condizione
-    incq    -8(%rbp)
+    incl    -4(%rbp)
 numeroPari_condizione:
     xor     %rax, %rax
     mov     LUNGHEZZA_VETTORE(%rip), %eax
     cmp     %rax, %rcx
     // Cicla gli elementi dell'array.
     jl      numeroPari_for
+    xor     %rax, %rax 
     // Ritorno il numero di pari in %rax.
-    mov     -8(%rbp), %rax
+    mov     -4(%rbp), %eax
     mov     %rbp, %rsp
     pop     %rbp
     ret
