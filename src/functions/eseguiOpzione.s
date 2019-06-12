@@ -243,7 +243,7 @@ eseguiOpzione_insert_success1:
     cmp     $0, %eax
     jl      eseguiOpzione_switch_4_if
     add     $1, %eax
-    mov     %eax, %edx // TODO
+    mov     %eax, %edx
     mov     -0xb(%rbp), %esi
     lea     STRINGA_POSIZIONE_VALORE(%rip), %rdi
     xor     %rax, %rax
