@@ -63,7 +63,7 @@ valoreFrequente_end_if2:
     inc     %ecx
 valoreFrequente_condizione1:
     cmp     LUNGHEZZA_VETTORE(%rip), %ecx
-    jl      valoreFrequentre_ciclo1
+    jl      valoreFrequente_ciclo1
     xor     %rax, %rax
     // Ritorno valore più frequente.
     mov     -12(%rbp), %rax
