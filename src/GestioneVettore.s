@@ -12,6 +12,7 @@
     .type scanf, @function
 
 // Data section
+    .data
 
 /*
     STRINGA_INSERIMENTO:
