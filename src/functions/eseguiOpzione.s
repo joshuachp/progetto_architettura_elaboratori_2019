@@ -234,6 +234,8 @@ eseguiOpzione_switch_4:
     mov     $1, %rdi
     call    exit@plt
 eseguiOpzione_insert_success1:
+    xor     %rbx, %rbx
+    mov     -0xb(%rbp), %ebx
     mov     %rbx, %rdi
     call    cercaValore
     cmp     $0, %eax

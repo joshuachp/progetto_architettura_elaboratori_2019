@@ -22,7 +22,7 @@
     
 cercaValore: 
     push    %rbp
-    mov     %rbp, %rsp
+    mov     %rsp, %rbp
     // Contatore ciclo
     xor     %rcx, %rcx
     // Condizione for
