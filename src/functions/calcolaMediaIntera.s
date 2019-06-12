@@ -2,7 +2,7 @@
     File: calcolaMediaIntera.s
     Descrizione: Calcola la media intera dei valori in VETTORE
 */
-
+    .file "calcolaMediaIntera"
 // Code section
 
     .text
@@ -20,7 +20,9 @@
 calcolaMediaIntera:
     push    %rbp
     mov     %rsp, %rbp
-    xor     %rcx, %rcx
+    // Contatore ciclo
+    xor     %ecx, %ecx
+    // Somma numeri
     xor     %rbx, %rbx
     // Somma tutti i valori
     jmp     calcolaMediaIntera_condition
@@ -33,7 +35,7 @@ calcolaMediaIntera_condition:
     cmp     %eax, %ecx
     jl      calcolaMediaIntera_loop
     mov     %rbx, %rax
-    xor     %rdx, %rdx
+    xor     %edx, %edx
     // Divide la somma per il numero di valori
     div     %ecx
     mov     %rbp, %rsp
