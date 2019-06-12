@@ -16,6 +16,7 @@ calcolaMax:
     mov     %rsp, %rbp
     // Contatore ciclo.
     xor     %rdx, %rdx 
+    xor     %rax, %rax
     // Settaggio massimo uguale vettore[0].
     mov     VETTORE(%rip), %eax
     lea     VETTORE(%rip), %rbx
@@ -24,7 +25,7 @@ calcolaMax_ciclo:
     cmp     (%rbx, %rdx, 4), %eax
     // Se massimo è maggiore del vettore, salto.
     jg      calcolaMax_end_if
-    mov     (%rbx, %rdx, 4), %rax
+    mov     (%rbx, %rdx, 4), %eax
 calcolaMax_end_if:
     incl    %edx
 calcoloMax_condizione:
