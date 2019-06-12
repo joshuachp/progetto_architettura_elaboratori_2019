@@ -4,12 +4,16 @@
 */
     .file "valoreFrequente.s"
 
-// Data section.
-    .data
-
 // Code section.
     .text
 
+/*
+    valoreFrequente:
+        Calcola il numero più frequente nel VETTORE.
+
+    @param (void)
+    @return (int) moda
+*/
     .global valoreFrequente
     .type valoreFrequente, @function
 
@@ -17,45 +21,52 @@
 valoreFrequente:
     push    %rbp
     mov     %rsp, %rbp
-    sub     $0x8, %rsp
+    sub     $0x10, %rsp
     // Max frequenza.
     movl    $-1, -4(%rbp)
-    // Contatore frequenza.
+    // Frequenza.
     movl    $0, -8(%rbp)
+    // Valore frequente.
+    movl    $0, -12(%rbp)
     // Contatore 1° ciclo.
-    xor     %ebx, %ebx
-ciclo1:
-    // Scelta del vettore.
-    lea     VETTORE(%rip), %rdx 
-    mov     (%rdx, %rcx, 4), %eax 
-    mov     LUNGHEZZA_VETTORE(%rip), %eax
-    cmp     %eax, %ebx
-    jl      fine
-ciclo2:
-    // Confronto tra vettori.
-    lea     VETTORE(%rip), %rdx 
-    mov     (%rdx, %rcx, 4), %eax 
-    mov     LUNGHEZZA_VETTORE(%rip), %eax
-    cmp     %ecx, %eax
-    je      ciclo1
-valoreFrequente_confronto:
-    // Confronto vettori.
-    cmp     reg, reg
-    je      incrementoFrequenza
-incrementoFrequenza:
-    incl    -8(%rbp)
-    cmp     -4(%rbp), -8(%rbp)
-    jl      massimoFrequenza
-massimoFrequenza:
-    movl    -8(%rbp), -4(%rbp)
-    // Valore frequenza.
-    movl    $0, -8(%rbp)
+    xor     %rcx, %rcx
+    // Contatore 2° ciclo.
     xor     %rdx, %rdx
-    mov     regVett, %rdx
+    jmp     valoreFrequente_condizione1
+valoreFrequente_ciclo1:
+    // Scelta del vettore.
+    lea     VETTORE(%rip), %rbx 
+    mov     (%rbx, %rcx, 4), %eax 
+
+    jmp     valoreFrequente_condizione2
+valoreFrequentre_ciclo2:
+    // Confronto tra vettori.
+    cmp     (%rbx, %rdx, 4), %eax
+    // Se i due elementi sono uguali incremento frequenza.
+    jne     valoreFrequente_end_if1
+    incl    -8(%rbp)
+valoreFrequente_end_if1:
+    // Incremento contatore 2.
+    inc     %edx
+valoreFrequente_condizione2:
+    cmp     LUNGHEZZA_VETTORE(%rip), %edx
+    jl      valoreFrequentre_ciclo2
+    mov     -8(%rbp), %eax
+    cmp     -4(%rbp), %eax
+    // Se la frequenza è maggiore.
+    jl      valoreFrequente_end_if2
+    mov     %eax, -4(%rbp)
+    mov     (%rbx, %rcx, 4), %eax
+    mov     %eax, -12(%rbp)
+valoreFrequente_end_if2:
+    movl    $0, -8(%rbp)
     inc     %ecx
-    cmp     %ecx, %eax
-    jl      ciclo2
-fine:
+valoreFrequente_condizione1:
+    cmp     LUNGHEZZA_VETTORE(%rip), %ecx
+    jl      valoreFrequentre_ciclo1
+    xor     %rax, %rax
+    // Ritorno valore più frequente.
+    mov     -12(%rbp), %rax
     mov     %rbp, %rsp
     pop     %rbp
     ret
