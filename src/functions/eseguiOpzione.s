@@ -234,6 +234,8 @@ eseguiOpzione_switch_4:
     mov     $1, %rdi
     call    exit@plt
 eseguiOpzione_insert_success1:
+    xor     %rbx, %rbx
+    mov     -0xb(%rbp), %ebx
     mov     %rbx, %rdi
     call    cercaValore
     cmp     $0, %eax
@@ -287,7 +289,7 @@ eseguiOpzione_switch_8:
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_9:
     // Calcola il valore più frequente e lo stampa a video
-    // call    valoreFrequente
+    call    valoreFrequente
     mov     %rax, %rsi
     lea     STRINGA_VALORE_FREQ(%rip), %rdi
     xor     %rax, %rax
