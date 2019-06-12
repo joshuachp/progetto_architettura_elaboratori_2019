@@ -255,7 +255,7 @@ eseguiOpzione_switch_4_endif:
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_5:
     // Calcola il valore massimo e lo stampa a video
-    // call    calcolaMax
+    call    calcolaMax
     mov     %rax, %rsi
     lea     STRINGA_VALORE_MAX(%rip), %rdi
     xor     %rax, %rax
