@@ -193,6 +193,7 @@ eseguiOpzione:
     // Default case opzione non supportata
     jmp     eseguiOpzione_switch_default
 eseguiOpzione_switch_0:
+    // Stampa la stringa di uscita
     lea     STRINGA_USCITA(%rip), %rdi
     xor     %rax, %rax
     call    puts
@@ -203,7 +204,7 @@ eseguiOpzione_switch_1:
 eseguiOpzione_switch_2:
     // Stampa il vettore in ordine inverso se stampaOrdineInverso è true se no stampa il vettore
     xor     %rax, %rax
-    movb    -0x8(%rbp), %al
+    movb    -0x1(%rbp), %al
     mov     %rax, %rdi
     // call stampaVettore
     jmp     eseguiOpzione_exit
@@ -211,7 +212,7 @@ eseguiOpzione_switch_3:
     // Conta il numero di pari e lo sottrae al numero totale per i dispari
     call    numeroPari
     mov     %eax, -0x8(%rbp)
-    mov     %rax, %rsi
+    mov     %eax, %esi
     lea     STRINGA_NUMERI_PARI(%rip), %rdi
     xor     %rax, %rax
     call    printf
