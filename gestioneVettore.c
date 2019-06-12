@@ -161,9 +161,9 @@ int numeroPari(void) {
     // Questa funzione restituisce il numero di elementi pari del vettore.
 
     int i,nPari = 0;
-
-    for (i = 0; i < LUNGHEZZA_VETTORE; i++) {
-        if (vettore[i] % 2 == 0)
+type printf, @function
+    for (i = 0; i < LUNGHEZZtype printf, @functionA_VETTORE; i++) {
+        if (vettore[i] % 2 =type printf, @function= 0)
             nPari++;
     }
     
