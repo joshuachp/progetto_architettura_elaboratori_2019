@@ -232,7 +232,7 @@ eseguiOpzione_switch_4:
     cmp     $1, %rax
     je      eseguiOpzione_insert_success1
     mov     $1, %rdi
-    call    exit
+    call    exit@plt
 eseguiOpzione_insert_success1:
     mov     %rbx, %rdi
     call    cercaValore

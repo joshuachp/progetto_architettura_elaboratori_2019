@@ -95,7 +95,7 @@ main_insert_loop:
     // Se scanf ha ricevuto un numero di inputs@plt diverso da 1 esce dal programma
     je     main_insert_success1
     mov     $1, %rdi
-    call    exit
+    call    exit@plt
 main_insert_success1:
     addl    $1, -0x4(%rbp)
 main_insert_loop_condition:
@@ -119,7 +119,7 @@ main_options_loop:
     // Se scanf ha ricevuto un numero di inputs@plt diverso da 1 esce dal programma
     je      main_insert_success2
     mov     $1, %rdi
-    call    exit
+    call    exit@plt
 main_insert_success2:
     // Esegue l'opzione selezzionata
     mov     -0x8(%rbp), %rdi
