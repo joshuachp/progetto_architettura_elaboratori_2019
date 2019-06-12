@@ -216,11 +216,9 @@ eseguiOpzione_switch_3:
     lea     STRINGA_NUMERI_PARI(%rip), %rdi
     xor     %rax, %rax
     call    printf
-    xor     %rax, %rax
-    mov     LUNGHEZZA_VETTORE(%rip), %eax
+    mov     LUNGHEZZA_VETTORE(%rip), %esi
     mov     -0x8(%rbp), %ebx
-    sub     %ebx, %eax
-    mov     %rax, %rsi
+    sub     %ebx, %esi
     lea     STRINGA_NUMERI_DISPARI(%rip), %rdi
     xor     %rax, %rax
     call    printf
@@ -242,10 +240,10 @@ eseguiOpzione_switch_4:
 eseguiOpzione_insert_success1:
     mov     %rbx, %rdi
     // call     cercaValore
-    cmp     $0, %rax
+    cmp     $0, %eax
     jl      eseguiOpzione_switch_4_if
-    add     $1, %rax
-    mov     %rax, %rdx
+    add     $1, %eax
+    mov     %eax, %edx // TODO
     mov     -0xb(%rbp), %esi
     lea     STRINGA_POSIZIONE_VALORE(%rip), %rdi
     xor     %rax, %rax
