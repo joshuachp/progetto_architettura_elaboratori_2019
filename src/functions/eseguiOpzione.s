@@ -239,7 +239,7 @@ eseguiOpzione_switch_4:
     call    exit
 eseguiOpzione_insert_success1:
     mov     %rbx, %rdi
-    // call     cercaValore
+    call    cercaValore
     cmp     $0, %eax
     jl      eseguiOpzione_switch_4_if
     add     $1, %eax

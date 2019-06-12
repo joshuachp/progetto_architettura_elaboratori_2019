@@ -6,6 +6,7 @@ set(
     src/GestioneVettore.s
     src/data/data.s
     src/functions/calcolaMediaIntera.s
+    src/functions/cercaValore.s
     src/functions/eseguiOpzione.s
     src/functions/numeroPari.s
     src/functions/stampaOpzioni.s
