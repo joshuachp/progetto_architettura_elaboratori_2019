@@ -10,6 +10,7 @@ set(
     src/functions/eseguiOpzione.s
     src/functions/numeroPari.s
     src/functions/stampaOpzioni.s
+    src/functions/valoreFrequente.s
 )
 
 add_executable(main ${ASSEMBLY_SRC})
