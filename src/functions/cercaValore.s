@@ -4,8 +4,7 @@
 */
     .file "cercaValore.s"
 
-    
-
+// Code section
     .text
 
 /*

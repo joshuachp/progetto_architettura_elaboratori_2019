@@ -4,10 +4,10 @@
 */
     .file "valoreFrequente.s"
 
-    // Data section.
+// Data section.
     .data
 
-    // Code section.
+// Code section.
     .text
 
     .global valoreFrequente

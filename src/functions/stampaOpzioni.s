@@ -3,11 +3,8 @@
     Descrizione: Stampa menu delle opzioni.
 */
     .file "stamapOpzioni.s"
-
-    // Funzioni esterne.
-    .type puts, @function
     
-    // Data section.
+// Data section.
     .data
 
 /*
@@ -37,7 +34,7 @@ stampaOpzioni:
     mov     %rsp, %rbp
     lea     STRINGA_OPZIONI(%rip), %rdi
     xor     %rax, %rax
-    call    puts  
+    call    puts@plt  
     mov     %rbp, %rsp
     pop     %rbp
     ret
