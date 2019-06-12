@@ -23,7 +23,7 @@ numeroPari:
     mov     %rsp, %rbp
     sub     $0x8, %rsp
     // Contatore ciclo.
-    mov     $0, %rcx
+    xor     %rcx, %rcx 
     // Contatore numeri pari.
     movl    $0, -4(%rbp)
     // Divisore. 
@@ -35,15 +35,14 @@ numeroPari_for:
     mov     (%rdx, %rcx, 4), %eax 
     xor     %rdx, %rdx
     div     %ebx
-    inc     %rcx 
+    inc     %ecx 
     cmp     $1, %rdx
     // Se presente il resto non incremento il contatore pari.
     je      numeroPari_condizione
     incl    -4(%rbp)
 numeroPari_condizione:
-    xor     %rax, %rax
     mov     LUNGHEZZA_VETTORE(%rip), %eax
-    cmp     %rax, %rcx
+    cmp     %eax, %ecx
     // Cicla gli elementi dell'array.
     jl      numeroPari_for
     xor     %rax, %rax 
