@@ -30,16 +30,15 @@ valoreFrequente:
     movl    $0, -12(%rbp)
     // Contatore 1° ciclo.
     xor     %rcx, %rcx
-    // Contatore 2° ciclo.
-    xor     %rdx, %rdx
     jmp     valoreFrequente_condizione1
 valoreFrequente_ciclo1:
     // Scelta del vettore.
     lea     VETTORE(%rip), %rbx 
     mov     (%rbx, %rcx, 4), %eax 
-
+    // Contatore 2° ciclo.
+    xor     %rdx, %rdx
     jmp     valoreFrequente_condizione2
-valoreFrequentre_ciclo2:
+valoreFrequente_ciclo2:
     // Confronto tra vettori.
     cmp     (%rbx, %rdx, 4), %eax
     // Se i due elementi sono uguali incremento frequenza.
@@ -50,7 +49,7 @@ valoreFrequente_end_if1:
     inc     %edx
 valoreFrequente_condizione2:
     cmp     LUNGHEZZA_VETTORE(%rip), %edx
-    jl      valoreFrequentre_ciclo2
+    jl      valoreFrequente_ciclo2
     mov     -8(%rbp), %eax
     cmp     -4(%rbp), %eax
     // Se la frequenza è maggiore.
