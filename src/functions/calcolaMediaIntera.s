@@ -2,9 +2,9 @@
     File: calcolaMediaIntera.s
     Descrizione: Calcola la media intera dei valori in VETTORE
 */
+    .file "calcolaMediaIntera"
 
 // Code section
-
     .text
 
 /*

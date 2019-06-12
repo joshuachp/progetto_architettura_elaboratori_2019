@@ -3,15 +3,11 @@
     Descrizione: Esegue sull array VETTORE l'operazione che gli viene passata
 */
 
-// Funzioni esterne
-
-    .type puts, @function
-    .type printf, @function
-    .type scanf, @function
+    .file "eseguiOpzione.s"
 
 // Data section
-
     .data
+    
 /*
     STRINGA_OPT_NON_SUPPORTATA:
         Stringa opzione non suportatas
@@ -196,7 +192,7 @@ eseguiOpzione_switch_0:
     // Stampa la stringa di uscita
     lea     STRINGA_USCITA(%rip), %rdi
     xor     %rax, %rax
-    call    puts
+    call    puts@plt
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_1:
     // Imposta stampaOrdineInverso a false e continua al case stampa vettore
@@ -215,31 +211,31 @@ eseguiOpzione_switch_3:
     mov     %eax, %esi
     lea     STRINGA_NUMERI_PARI(%rip), %rdi
     xor     %rax, %rax
-    call    printf
+    call    printf@plt
     mov     LUNGHEZZA_VETTORE(%rip), %esi
     mov     -0x8(%rbp), %ebx
     sub     %ebx, %esi
     lea     STRINGA_NUMERI_DISPARI(%rip), %rdi
     xor     %rax, %rax
-    call    printf
+    call    printf@plt
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_4:
     // Riceve in input un inrero e stampa laposizione o se non è contenuti in VETTORE
     lea     STRINGA_INTERO_DA_CERCARE(%rip), %rdi
     xor     %rax, %rax
-    call    puts
+    call    puts@plt
     lea     -0xb(%rbp), %rsi
     lea     STRINGA_FORMAT_I(%rip), %rdi
     xor     %rax, %rax
-    call    scanf
-    // Se scanf ha ricevuto un numero di inputs diverso da 1 esce dal programma
+    call    scanf@plt
+    // Se scanf ha ricevuto un numero di inputs@plt diverso da 1 esce dal programma
     cmp     $1, %rax
     je      eseguiOpzione_insert_success1
     mov     $1, %rdi
-    call    exit
+    call    exit@plt
 eseguiOpzione_insert_success1:
     mov     %rbx, %rdi
-    // call     cercaValore
+    call    cercaValore
     cmp     $0, %eax
     jl      eseguiOpzione_switch_4_if
     add     $1, %eax
@@ -247,12 +243,12 @@ eseguiOpzione_insert_success1:
     mov     -0xb(%rbp), %esi
     lea     STRINGA_POSIZIONE_VALORE(%rip), %rdi
     xor     %rax, %rax
-    call    printf
+    call    printf@plt
     jmp     eseguiOpzione_switch_4_endif
 eseguiOpzione_switch_4_if:
     mov     -0xb(%rbp), %esi
     lea     STRINGA_VALORE_NON_TROVATO(%rip), %rdi
-    call    printf
+    call    printf@plt
 eseguiOpzione_switch_4_endif:
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_5:
@@ -261,7 +257,7 @@ eseguiOpzione_switch_5:
     mov     %rax, %rsi
     lea     STRINGA_VALORE_MAX(%rip), %rdi
     xor     %rax, %rax
-    call    printf
+    call    printf@plt
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_6:
     // Stampa a video la posizione del valore massimo inserito
@@ -270,7 +266,7 @@ eseguiOpzione_switch_6:
     mov     %rax, %rsi
     lea     STRINGA_POSIZIONE_MAX(%rip), %rdi
     xor     %rax, %rax
-    call    printf
+    call    printf@plt
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_7:
     // Calcola il valore massimo e lo stampa a video
@@ -278,7 +274,7 @@ eseguiOpzione_switch_7:
     mov     %rax, %rsi
     lea     STRINGA_VALORE_MIN(%rip), %rdi
     xor     %rax, %rax
-    call    printf
+    call    printf@plt
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_8:
     // Stampa a video la posizione del valore minimo inserito
@@ -287,7 +283,7 @@ eseguiOpzione_switch_8:
     mov     %rax, %rsi
     lea     STRINGA_POSIZIONE_MIN(%rip), %rdi
     xor     %rax, %rax
-    call    printf
+    call    printf@plt
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_9:
     // Calcola il valore più frequente e lo stampa a video
@@ -295,7 +291,7 @@ eseguiOpzione_switch_9:
     mov     %rax, %rsi
     lea     STRINGA_VALORE_FREQ(%rip), %rdi
     xor     %rax, %rax
-    call    printf
+    call    printf@plt
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_10:
     // Calcola la media e la stampa a video
@@ -303,7 +299,7 @@ eseguiOpzione_switch_10:
     mov     %rax, %rsi
     lea     STRINGA_MEDIA(%rip), %rdi
     xor     %rax, %rax
-    call    printf
+    call    printf@plt
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_m1:
     call    stampaOpzioni
@@ -311,7 +307,7 @@ eseguiOpzione_switch_m1:
 eseguiOpzione_switch_default:
     lea     STRINGA_OPT_NON_SUPPORTATA(%rip), %rdi
     xor     %rax, %rax
-    call    puts
+    call    puts@plt
 eseguiOpzione_exit:
     mov     %rbp, %rsp
     pop     %rbp
