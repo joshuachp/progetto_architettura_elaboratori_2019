@@ -1,25 +1,25 @@
 /*
-    File: calcolaMax.s
+    File: calcolaMin.s
     Descrizione: Calcolo del massimo.
 */
 
-    .file "calcolaMax.s"
+    .file "calcolaMin.s"
 
 // Code section.
     .text
 
 /*
-    calcolaMax:
+    calcolaMin:
         Calcola il numero maggiore presente nell'array.
 
     @param (void)
     @return (int)
-        La funzuione ritorna il numero Max.
+        La funzuione ritorna il numero Min.
 */
-    .global calcolaMax
-    .type calcolaMax @function
+    .global calcolaMin
+    .type calcolaMin @function
 
-calcolaMax:
+calcolaMin:
     push    %rbp
     mov     %rsp, %rbp
     // Contatore ciclo.
@@ -28,18 +28,18 @@ calcolaMax:
     // Settaggio massimo uguale vettore[0].
     mov     VETTORE(%rip), %eax
     lea     VETTORE(%rip), %rbx
-    jmp     calcoloMax_condizione
-calcolaMax_ciclo:
+    jmp     calcoloMin_condizione
+calcolaMin_ciclo:
     cmp     (%rbx, %rdx, 4), %eax
     // Se massimo è maggiore del vettore, salto.
-    jg      calcolaMax_end_if
+    jl      calcolaMin_end_if
     mov     (%rbx, %rdx, 4), %eax
-calcolaMax_end_if:
+calcolaMin_end_if:
     incl    %edx
-calcoloMax_condizione:
+calcoloMin_condizione:
     // Confronto contatore e lunghezza vettore.
     cmp     LUNGHEZZA_VETTORE(%rip), %edx
-    jl      calcolaMax_ciclo
+    jl      calcolaMin_ciclo
     mov     %rbp, %rsp
     pop     %rbp
     ret
