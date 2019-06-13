@@ -1,6 +1,6 @@
 {
-    "cmake.configureOnOpen": false,
-    "files.associations": {
-        "stdbool.h": "c"
-    }
+  "cmake.configureOnOpen": true,
+  "files.associations": {
+    "stdbool.h": "c"
+  }
 }
