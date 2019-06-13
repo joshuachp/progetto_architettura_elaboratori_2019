@@ -11,6 +11,7 @@ set(
     src/functions/eseguiOpzione.s
     src/functions/numeroPari.s
     src/functions/stampaOpzioni.s
+    src/functions/stampaVettore.s
     src/functions/valoreFrequente.s
 )
 
