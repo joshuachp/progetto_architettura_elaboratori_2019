@@ -2,7 +2,17 @@
     File: stampaVettore.s
     Descrizione: Stampa a video i valori del vettore inserito precedentemente.
 */
+    .file "stampaVettore.s"
 
+    .data 
+
+STRINGA_VALORI_INSERIRTI:
+    .string "Valori inseriti: \n"
+
+STRINGA_ELENCO_VALORI:
+    .string "Valore %i: %i"
+
+// Code section
 .text
 
 /*
@@ -13,7 +23,7 @@
     @return (void)
 */
 
-.global stampaVettore.s
+.global stampaVettore
 .type stampaVettore, @function
 
 stampaVettore:
@@ -24,7 +34,7 @@ stampaVettore:
     //Condizione for
     jmp     stampaVettore_condzione
 stampaVettore_ciclo: 
-    lea     VETTORE(%rip), %rax
+    lea     VETTORE(%rip), %rbx
     mov     (%rax, %rcx, 4), %rdi
     call    puts@plt
     inc     %ecx
