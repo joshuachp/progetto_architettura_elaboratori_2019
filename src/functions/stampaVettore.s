@@ -25,7 +25,7 @@ stampaVettore:
     jmp     stampaVettore_condzione
 stampaVettore_ciclo: 
     lea     VETTORE(%rip), %rax
-    mov     (%rax, %rcx, %4), %edi
+    mov     (%rax, %rcx, 4), %rdi
     call    puts@plt
     inc     %ecx
 stampaVettore_condzione:
