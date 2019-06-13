@@ -33,7 +33,7 @@ cercaValore_ciclo:
     je      cercaValore_trovato
     inc     %ecx
 cercaValore_condizione:
-    cmp     LUNGHEZZA_VETTORE(%rip), %rcx
+    cmp     LUNGHEZZA_VETTORE(%rip), %ecx
     jl      cercaValore_ciclo
     // vaore non trovato
     mov     $-1, %rax
