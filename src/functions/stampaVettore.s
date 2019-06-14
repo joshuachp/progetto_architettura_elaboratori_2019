@@ -39,34 +39,34 @@ stampaVettore:
     xor     %rcx, %rcx
     cmp     $0, %rdi
     // Condizione se 0 salta ad inverso altrienti rimani
-    je      stampa_stringa_inizio_inversa
+    je      stampaVettore_stringa_inizio_inversa
     
     mov     STRINGA_VALORI_INSERIRTI(%rip), %rdi
     xor     %rax, %rax
-    call    put@plt
+    call    printf@plt
     // Condizione for 
     jmp     stampaVettore_condzione
 
-stampa_stringa_inizio_inversa:    
+stampaVettore_stringa_inizio_inversa:    
     mov     STRINGA_VALORI_INSERIRTI_INVERSO(%rip), %rdi
     xor     %rax, %rax
-    call    put@plt
+    call    printf@plt
     // Condizione for inverso
-    jmp     stampaVettore_condizione_inverso
+    jmp     stampaVettore_condzione_inverso
 
 stampaVettore_ciclo: 
     lea     STRINGA_ELENCO_VALORI(%rip), %rdi
     mov     %rcx, %rsi
-    call    put@plt 
-    leal    VETTORE(%rip), %rbx
+    call    printf@plt 
+    lea    VETTORE(%rip), %rbx
     mov     (%rbx, %rcx, 4), %rdi
     call    puts@plt
     inc     %ecx
-    jmp     stampaVettore_condizione
-stampa_vettore_ciclo_inverso:
+    jmp     stampaVettore_condzione
+stampaVettore_ciclo_inverso:
     lea     STRINGA_ELENCO_VALORI(%rip), %rdi
     mov     %rcx, %rsi
-    call    put@plt 
+    call    printf@plt 
     lea     VETTORE(%rip), %rbx
     mov     %rcx, %rax  
     sub     LUNGHEZZA_VETTORE(%rip), %rcx
@@ -74,7 +74,7 @@ stampa_vettore_ciclo_inverso:
     call    puts@plt
     mov     %rax, %rcx
     inc     %ecx
-    jmp     stampaVettore_condizione_inverso
+    jmp     stampaVettore_condzione_inverso
 stampaVettore_condzione:
     cmp     LUNGHEZZA_VETTORE(%rip), %ecx
     jl      stampaVettore_ciclo
@@ -82,7 +82,6 @@ stampaVettore_condzione:
 stampaVettore_condzione_inverso:
     cmp     LUNGHEZZA_VETTORE(%rip), %ecx
     jl      stampaVettore_ciclo_inverso
-    jmp     stampaVettore_return
 stampaVettore_return:
     mov     %rbp, %rsp
     pop     %rbp
