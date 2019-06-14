@@ -74,7 +74,6 @@ stampa_vettore_ciclo_inverso:
     call    puts@plt
     mov     %rax, %rcx
     inc     %ecx
-    jmp     stampaVettore_condizione
     jmp     stampaVettore_condizione_inverso
 stampaVettore_condzione:
     cmp     LUNGHEZZA_VETTORE(%rip), %ecx
