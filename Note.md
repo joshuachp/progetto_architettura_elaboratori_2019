@@ -1,0 +1,2 @@
+- [x] .align 8
+- [x] .align 8

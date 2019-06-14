@@ -73,5 +73,3 @@ fabric.properties
 !.vscode/extensions.json
 
 /build
-
-/test

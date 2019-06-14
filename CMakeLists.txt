@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)  # CMake version check
-project(assembly C)
+project(assembly C CXX)
 
 set(
     ASSEMBLY_SRC 
@@ -17,3 +17,7 @@ set(
 add_executable(main ${ASSEMBLY_SRC})
 
 set_property(SOURCE ${ASSEMBLY_SRC} PROPERTY LANGUAGE C)
+
+add_executable(test_main test/test.cpp ${ASSEMBLY_SRC})
+
+add_test(test_main test_main)
