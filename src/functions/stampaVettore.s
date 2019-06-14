@@ -57,8 +57,9 @@ stampaVettore_stringa_inizio_inversa:
 stampaVettore_ciclo: 
     lea     STRINGA_ELENCO_VALORI(%rip), %rdi
     mov     %rcx, %rsi
+    xor     %rax, %rax
     call    printf@plt 
-    lea    VETTORE(%rip), %rbx
+    lea     VETTORE(%rip), %rbx
     mov     (%rbx, %rcx, 4), %rdi
     call    puts@plt
     inc     %ecx
@@ -66,6 +67,7 @@ stampaVettore_ciclo:
 stampaVettore_ciclo_inverso:
     lea     STRINGA_ELENCO_VALORI(%rip), %rdi
     mov     %rcx, %rsi
+    xor     %rax, %rax
     call    printf@plt 
     lea     VETTORE(%rip), %rbx
     mov     %rcx, %rax  
