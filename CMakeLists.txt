@@ -6,36 +6,29 @@ set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
 
 
-set( ASSEMBLY_SRC 
-    src/GestioneVettore.s
-    src/data/data.s
-    src/functions/calcolaMax.s 
-    src/functions/calcolaMediaIntera.s
-    src/functions/cercaValore.s
-    src/functions/eseguiOpzione.s
-    src/functions/numeroPari.s
-    src/functions/stampaOpzioni.s
-    src/functions/stampaVettore.s
-    src/functions/valoreFrequente.s
-)
+set( ASSEMBLY_MAIN src/GestioneVettore.s)
 
 set( ASSEMBLY_LIB
     src/data/data.s
     src/functions/calcolaMax.s 
     src/functions/calcolaMediaIntera.s
+    src/functions/calcolaMin.s
     src/functions/cercaValore.s
     src/functions/eseguiOpzione.s
     src/functions/numeroPari.s
+    src/functions/posizioneMax.s
+    src/functions/posizioneMin.s
     src/functions/stampaOpzioni.s
     src/functions/stampaVettore.s
     src/functions/valoreFrequente.s
 )
 
-set_property(SOURCE ${ASSEMBLY_SRC} PROPERTY LANGUAGE C)
+set_property(SOURCE ${ASSEMBLY_MAIN} PROPERTY LANGUAGE C)
+set_property(SOURCE ${ASSEMBLY_LIB} PROPERTY LANGUAGE C)
 
 add_library(gestrione_vettore_lib ${ASSEMBLY_LIB})
 
-add_executable(main  src/GestioneVettore.s)
+add_executable(main  ${ASSEMBLY_MAIN})
 target_link_libraries(main gestrione_vettore_lib)
 
 enable_testing()
