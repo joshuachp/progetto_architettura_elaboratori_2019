@@ -15,11 +15,14 @@
     @type (int)
 */
     .global LUNGHEZZA_VETTORE
+    .section .rodata
+    .align 4
+    .type LUNGHEZZA_VETTORE, @object
+    .size LUNGHEZZA_VETTORE, 4
 LUNGHEZZA_VETTORE:
-    .int 10
+    .long 10
 
     .bss
-
 /*
     VETTORE:
         Variabile globale dell'array utilizzato dal programma
@@ -27,8 +30,9 @@ LUNGHEZZA_VETTORE:
     @type (int *)
 */
     .global VETTORE
+    .align 8
+    .type VETTORE, @object
+    .size VETTORE, 40
 VETTORE:
-    .rept 10
-    .int 0
-    .endr
+    .zero 40
 

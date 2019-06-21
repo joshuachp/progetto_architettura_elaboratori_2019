@@ -263,7 +263,7 @@ eseguiOpzione_switch_5:
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_6:
     // Stampa a video la posizione del valore massimo inserito
-    // call     posizioneMax
+    call     posizioneMax
     add     $1, %rax
     mov     %rax, %rsi
     lea     STRINGA_POSIZIONE_MAX(%rip), %rdi
@@ -272,7 +272,7 @@ eseguiOpzione_switch_6:
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_7:
     // Calcola il valore massimo e lo stampa a video
-    // call    calcolaMin
+    call    calcolaMin
     mov     %rax, %rsi
     lea     STRINGA_VALORE_MIN(%rip), %rdi
     xor     %rax, %rax
@@ -280,7 +280,7 @@ eseguiOpzione_switch_7:
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_8:
     // Stampa a video la posizione del valore minimo inserito
-    // call     posizioneMin
+    call     posizioneMin
     add     $1, %rax
     mov     %rax, %rsi
     lea     STRINGA_POSIZIONE_MIN(%rip), %rdi
