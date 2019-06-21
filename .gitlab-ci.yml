@@ -1,17 +1,29 @@
 image: gcc
 
+stages:
+  - build
+  - test
+
 build:
   stage: build
   before_script:
     - apt update && apt -y install cmake
   script:
-    - /usr/bin/cmake --build ./build
+    - mkdir -p build
+    - cd build
+    - cmake ..
+    - cd ..
+    - cmake --build build
   artifacts:
     paths:
       - build
+  cache:
+    paths:
+      - build
 
-# run tests using the binary built before
 test:
   stage: test
+  dependencies:
+    - build
   script:
-    -./build/run_test
+    - ./build/run_tests
