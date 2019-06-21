@@ -1,7 +1,7 @@
 #if !defined(GESTIONE_VETTORE)
 #define GESTIONE_VETTORE
 
-extern int LUNGHEZZA_VETTORE;
+extern const int LUNGHEZZA_VETTORE;
 extern int VETTORE[];
 
 void stampaOpzioni(void);
