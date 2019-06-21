@@ -5,13 +5,14 @@ build:
   before_script:
     - apt update && apt -y install cmake
   script:
+    - /usr/bin/cmake -S ./ -B ./build
     - /usr/bin/cmake --build ./build
   artifacts:
     paths:
-      - build
+      - ./build
 
 # run tests using the binary built before
 test:
   stage: test
   script:
-    -./build/run_test
+    - ./build/run_test
