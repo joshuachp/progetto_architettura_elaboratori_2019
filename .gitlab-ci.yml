@@ -1,5 +1,9 @@
 image: gcc
 
+stages:
+  - build
+  -test
+
 build:
   stage: build
   before_script:
@@ -12,10 +16,14 @@ build:
     - cmake --build build
   artifacts:
     paths:
-      - ./build
+      - build
+  cache:
+    paths:
+      - build
 
-# run tests using the binary built before
 test:
   stage: test
+  dependencies: 
+    - build
   script:
-    - ./build/run_test
+    - build/run_test
