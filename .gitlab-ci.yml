@@ -5,6 +5,7 @@ build:
   before_script:
     - apt update && apt -y install cmake
   script:
+    - /user/bin/mkdir build
     - /usr/bin/cmake -S ./ -B ./build
     - /usr/bin/cmake --build ./build
   artifacts:
