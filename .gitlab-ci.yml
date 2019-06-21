@@ -26,4 +26,6 @@ test:
   dependencies:
     - build
   script:
-    - build/run_test
+    - pwd
+    - ls
+    - ./build/run_test
