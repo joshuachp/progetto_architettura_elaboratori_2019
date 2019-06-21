@@ -9,7 +9,7 @@ build:
   before_script:
     - apt update && apt -y install cmake
   script:
-    - mkdir build
+    - mkdir -p build
     - cd build
     - cmake ..
     - cd ..
