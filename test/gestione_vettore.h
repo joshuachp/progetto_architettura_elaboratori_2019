@@ -1,5 +1,8 @@
-#if !defined(MAIN)
-#define MAIN
+#if !defined(GESTIONE_VETTORE)
+#define GESTIONE_VETTORE
+
+extern int LUNGHEZZA_VETTORE;
+extern int VETTORE[];
 
 void stampaOpzioni(void);
 void eseguiOpzione(int opzione);
@@ -13,4 +16,4 @@ int posizioneMin(void);
 int valoreFrequente(void);
 int calcolaMediaIntera(void);
 
-#endif  // MAIN
+#endif  // GESTIONE_VETTORE
