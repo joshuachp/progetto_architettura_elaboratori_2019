@@ -202,7 +202,7 @@ eseguiOpzione_switch_2:
     xor     %rax, %rax
     movb    -0x1(%rbp), %al
     mov     %rax, %rdi
-    // call stampaVettore
+    call    stampaVettore
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_3:
     // Conta il numero di pari e lo sottrae al numero totale per i dispari

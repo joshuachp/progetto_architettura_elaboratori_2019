@@ -18,10 +18,3 @@ TEST(numero_pari_incrementale, numero_pari) {
     }
     ASSERT_EQ(numeroPari(), LUNGHEZZA_VETTORE / 2);
 }
-
-TEST(numero_pari_incrementale, numero_pari) {
-    for (int i = 0; i < LUNGHEZZA_VETTORE; i++) {
-        VETTORE[i] = i;
-    }
-    ASSERT_EQ(numeroPari(), LUNGHEZZA_VETTORE / 2);
-}
