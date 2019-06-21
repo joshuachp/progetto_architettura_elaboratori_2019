@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 2.8)  # CMake version check
-project(assembly LANGUAGES C CXX)
+cmake_minimum_required(VERSION 3.0)  # CMake version check
+project(assembly VERSION 0.1 LANGUAGES C CXX)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
