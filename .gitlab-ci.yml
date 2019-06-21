@@ -2,7 +2,7 @@ image: gcc
 
 stages:
   - build
-  -test
+  - test
 
 build:
   stage: build
@@ -23,7 +23,7 @@ build:
 
 test:
   stage: test
-  dependencies: 
+  dependencies:
     - build
   script:
     - build/run_test
