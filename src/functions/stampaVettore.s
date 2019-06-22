@@ -39,7 +39,7 @@ stampaVettore:
     // Stampa vettore
     lea     STRINGA_VALORI_INSERIRTI(%rip), %rdi
     xor     %rax, %rax
-    call    puts@plt
+    call    puts@PLT
     // Contatore ciclo
     movl     $0, -4(%rbp)
     // Condizione for
@@ -54,7 +54,7 @@ stampaVettore_ciclo:
     inc     %esi
     lea     STRINGA_ELENCO_VALORI(%rip), %rdi
     xor     %rax, %rax
-    call    printf@plt
+    call    printf@PLT
     // Incremento contatore
     incl    -4(%rbp)
 stampaVettore_condizione:
@@ -68,7 +68,7 @@ stampaVettore_inverso:
     // Stampa vettore inverso
     lea     STRINGA_VALORI_INSERIRTI_INVERSO(%rip), %rdi
     xor     %rax, %rax
-    call    puts@plt
+    call    puts@PLT
     // Contatore ciclo
     mov     LUNGHEZZA_VETTORE(%rip), %ecx
     dec     %ecx
@@ -85,7 +85,7 @@ stampaVettore_inverso_ciclo:
     inc     %esi
     lea     STRINGA_ELENCO_VALORI(%rip), %rdi
     xor     %rax, %rax
-    call    printf@plt
+    call    printf@PLT
     // Decremento contatore
     decl    -4(%rbp)
 stampaVettore_inverso_condizione:

@@ -34,7 +34,7 @@ stampaOpzioni:
     mov     %rsp, %rbp
     lea     STRINGA_OPZIONI(%rip), %rdi
     xor     %rax, %rax
-    call    puts@plt  
+    call    puts@PLT  
     mov     %rbp, %rsp
     pop     %rbp
     ret

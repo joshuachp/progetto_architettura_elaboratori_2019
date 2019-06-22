@@ -71,7 +71,7 @@ main:
     mov     LUNGHEZZA_VETTORE(%rip), %rsi
     lea     STRINGA_INSERIMENTO(%rip), %rdi
     xor     %rax, %rax
-    call    printf@plt
+    call    printf@PLT
     // Inizializza un ciclo for per l'inserimento
     movl    $0, -0x4(%rbp)
     jmp     main_insert_loop_condition
@@ -81,7 +81,7 @@ main_insert_loop:
     add     $1, %esi
     lea     STRINGA_INSERIMENTO_ELEMENTO(%rip), %rdi
     xor     %rax, %rax
-    call    printf@plt
+    call    printf@PLT
     // Inserisce l'elemento nel vettore
     lea     VETTORE(%rip), %rax
     xor     %rbx, %rbx
@@ -89,13 +89,13 @@ main_insert_loop:
     lea     (%rax, %rbx, 4), %rsi
     lea     STRINGA_FORMAT_I(%rip), %rdi
     xor     %rax, %rax
-    call    scanf@plt
+    call    scanf@PLT
     // Controllo il successo dello scanf
     cmp     $1, %eax
-    // Se scanf ha ricevuto un numero di inputs@plt diverso da 1 esce dal programma
+    // Se scanf ha ricevuto un numero di inputs@PLT diverso da 1 esce dal programma
     je     main_insert_success1
     mov     $1, %rdi
-    call    exit@plt
+    call    exit@PLT
 main_insert_success1:
     addl    $1, -0x4(%rbp)
 main_insert_loop_condition:
@@ -109,17 +109,17 @@ main_insert_loop_condition:
 main_options_loop:
     lea     STRINGA_OPZIONI(%rip), %rdi
     xor     %rax, %rax
-    call    puts@plt
+    call    puts@PLT
     lea     -0x8(%rbp), %rsi
     lea     STRINGA_FORMAT_I(%rip), %rdi
     xor     %rax, %rax
-    call    scanf@plt
+    call    scanf@PLT
     // Controllo il successo dello scanf
     cmp     $1, %eax
-    // Se scanf ha ricevuto un numero di inputs@plt diverso da 1 esce dal programma
+    // Se scanf ha ricevuto un numero di inputs@PLT diverso da 1 esce dal programma
     je      main_insert_success2
     mov     $1, %rdi
-    call    exit@plt
+    call    exit@PLT
 main_insert_success2:
     // Esegue l'opzione selezzionata
     mov     -0x8(%rbp), %rdi
