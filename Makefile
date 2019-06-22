@@ -4,7 +4,8 @@ DEPS=src/data/data.s src/functions/calcolaMax.s src/functions/calcolaMediaIntera
 OUT=build/main
 MAIN_32=src_32/GestioneVettore.s
 DEPS_32=src_32/data/data.s src_32/functions/calcolaMax.s src_32/functions/calcolaMediaIntera.s src_32/functions/calcolaMin.s src_32/functions/cercaValore.s src_32/functions/eseguiOpzione.s src_32/functions/numeroPari.s src_32/functions/posizioneMax.s src_32/functions/posizioneMin.s src_32/functions/stampaOpzioni.s src_32/functions/stampaVettore.s src_32/functions/valoreFrequente.s
-OUT=build/MAIN_32
+OUT=build/main
+OUT=build/main_32
 CFLAGS=-g
 
 build: mkdir $(MAIN) $(DEPS)
