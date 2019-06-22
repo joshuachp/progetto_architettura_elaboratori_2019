@@ -18,26 +18,26 @@
     .type calcolaMediaIntera, @function
 
 calcolaMediaIntera:
-    push    %rbp
-    mov     %rsp, %rbp
+    push    %ebp
+    mov     %esp, %ebp
     // Contatore ciclo
-    xor     %rcx, %rcx
+    xor     %ecx, %ecx
     // Somma numeri
-    xor     %rbx, %rbx
+    xor     %ebx, %ebx
     // Somma tutti i valori
     jmp     calcolaMediaIntera_condition
 calcolaMediaIntera_loop:
-    lea     VETTORE(%rip), %rax
-    add     (%rax, %rcx, 4), %ebx
+    lea     VETTORE(%eip), %eax
+    add     (%eax, %ecx, 4), %ebx
     add     $1, %ecx
 calcolaMediaIntera_condition:
-    mov     LUNGHEZZA_VETTORE(%rip), %eax
+    mov     LUNGHEZZA_VETTORE(%eip), %eax
     cmp     %eax, %ecx
     jl      calcolaMediaIntera_loop
-    mov     %rbx, %rax
+    mov     %ebx, %eax
     xor     %edx, %edx
     // Divide la somma per il numero di valori
     div     %ecx
-    mov     %rbp, %rsp
-    pop     %rbp
+    mov     %ebp, %esp
+    pop     %ebp
     ret
