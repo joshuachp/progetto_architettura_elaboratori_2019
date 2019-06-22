@@ -21,7 +21,7 @@
 numeroPari:
     push    %ebp
     mov     %esp, %ebp
-    sub     $0x8, %esp
+    sub     $0x4, %esp
     // Contatore ciclo.
     xor     %ecx, %ecx 
     // Contatore numeri pari.

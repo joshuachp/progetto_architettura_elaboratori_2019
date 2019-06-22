@@ -23,7 +23,7 @@ posizioneMin:
     push    %ebp
     mov     %esp, %ebp
     call    calcolaMin
-    mov     %eax, %edi
+    push    %eax
     call    cercaValore
     mov     %ebp, %esp
     pop     %ebp

@@ -23,13 +23,15 @@
 cercaValore: 
     push    %ebp
     mov     %esp, %ebp
+    // Valore da cercare
+    mov     8(%ebp), %edx
     // Contatore ciclo
     xor     %ecx, %ecx
     // Condizione for
     jmp     cercaValore_condizione
 cercaValore_ciclo:
     lea     VETTORE, %eax
-    cmp     (%eax, %ecx, 4), %edi
+    cmp     (%eax, %ecx, 4), %edx
     je      cercaValore_trovato
     inc     %ecx
 cercaValore_condizione:

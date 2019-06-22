@@ -32,9 +32,8 @@ STRINGA_OPZIONI:
 stampaOpzioni:
     push    %ebp
     mov     %esp, %ebp
-    lea     STRINGA_OPZIONI, %edi
-    xor     %eax, %eax
-    call    puts@PLT  
+    push    $STRINGA_OPZIONI
+    call    puts
     mov     %ebp, %esp
     pop     %ebp
     ret

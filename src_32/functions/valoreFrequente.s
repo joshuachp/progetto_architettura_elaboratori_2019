@@ -21,7 +21,7 @@
 valoreFrequente:
     push    %ebp
     mov     %esp, %ebp
-    sub     $0x10, %esp
+    sub     $12, %esp
     // Max frequenza.
     movl    $-1, -4(%ebp)
     // Frequenza.

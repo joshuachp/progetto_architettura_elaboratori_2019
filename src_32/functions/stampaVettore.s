@@ -32,14 +32,15 @@ STRINGA_VALORI_INSERIRTI_INVERSO:
 stampaVettore:
     push    %ebp
     mov     %esp, %ebp
-    sub     $8, %esp
-    cmp     $1, %edi
+    sub     $4, %esp
+    mov     8(%ebp), %edx
+    cmp     $1, %dl
     // Condizione se 1 salta ad inverso altrienti rimani
     je      stampaVettore_inverso
     // Stampa vettore
-    lea     STRINGA_VALORI_INSERIRTI, %edi
-    xor     %eax, %eax
-    call    puts@PLT
+    push    $STRINGA_VALORI_INSERIRTI
+    call    puts
+    add     $4, %esp
     // Contatore ciclo
     movl     $0, -4(%ebp)
     // Condizione for
@@ -49,11 +50,12 @@ stampaVettore_ciclo:
     mov     -4(%ebp), %ecx
     lea     VETTORE, %eax
     mov     (%eax, %ecx, 4), %edx
-    mov     %ecx, %esi
-    inc     %esi
-    lea     STRINGA_ELENCO_VALORI, %edi
-    xor     %eax, %eax
-    call    printf@PLT
+    inc     %ecx
+    push    %edx
+    push    %ecx
+    push    $STRINGA_ELENCO_VALORI
+    call    printf
+    add     $12, %esp
     // Incremento contatore
     incl    -4(%ebp)
 stampaVettore_condizione:
@@ -65,9 +67,9 @@ stampaVettore_condizione:
     jmp     stampaVettore_return
 stampaVettore_inverso:
     // Stampa vettore inverso
-    lea     STRINGA_VALORI_INSERIRTI_INVERSO, %edi
-    xor     %eax, %eax
-    call    puts@PLT
+    push    $STRINGA_VALORI_INSERIRTI_INVERSO
+    call    puts
+    add     $4, %esp
     // Contatore ciclo
     mov     LUNGHEZZA_VETTORE, %ecx
     dec     %ecx
@@ -79,15 +81,16 @@ stampaVettore_inverso_ciclo:
     mov     -4(%ebp), %ecx
     lea     VETTORE, %eax
     mov     (%eax, %ecx, 4), %edx
-    mov     %ecx, %esi
-    inc     %esi
-    lea     STRINGA_ELENCO_VALORI, %edi
-    xor     %eax, %eax
-    call    printf@PLT
+    inc     %ecx
+    push    %edx
+    push    %ecx
+    push    $STRINGA_ELENCO_VALORI
+    call    printf
+    add     $12, %esp
     // Decremento contatore
     decl    -4(%ebp)
 stampaVettore_inverso_condizione:
-    cmp     $0, -4(%ebp)
+    cmpl    $0, -4(%ebp)
     // Se è maggiore o uguale a 0 continuo il ciclo
     jge     stampaVettore_inverso_ciclo
 stampaVettore_return:

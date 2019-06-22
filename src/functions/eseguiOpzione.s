@@ -224,7 +224,7 @@ eseguiOpzione_switch_4:
     lea     STRINGA_INTERO_DA_CERCARE(%rip), %rdi
     xor     %rax, %rax
     call    puts@PLT
-    lea     -0xb(%rbp), %rsi
+    lea     -0x8(%rbp), %rsi
     lea     STRINGA_FORMAT_I(%rip), %rdi
     xor     %rax, %rax
     call    scanf@PLT
@@ -235,20 +235,20 @@ eseguiOpzione_switch_4:
     call    exit@PLT
 eseguiOpzione_insert_success1:
     xor     %rbx, %rbx
-    mov     -0xb(%rbp), %ebx
+    mov     -0x8(%rbp), %ebx
     mov     %rbx, %rdi
     call    cercaValore
     cmp     $0, %eax
     jl      eseguiOpzione_switch_4_if
     add     $1, %eax
     mov     %eax, %edx
-    mov     -0xb(%rbp), %esi
+    mov     -0x8(%rbp), %esi
     lea     STRINGA_POSIZIONE_VALORE(%rip), %rdi
     xor     %rax, %rax
     call    printf@PLT
     jmp     eseguiOpzione_switch_4_endif
 eseguiOpzione_switch_4_if:
-    mov     -0xb(%rbp), %esi
+    mov     -0x8(%rbp), %esi
     lea     STRINGA_VALORE_NON_TROVATO(%rip), %rdi
     call    printf@PLT
 eseguiOpzione_switch_4_endif:

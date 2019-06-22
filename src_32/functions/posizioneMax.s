@@ -23,7 +23,7 @@ posizioneMax:
     push    %ebp
     mov     %esp, %ebp
     call    calcolaMax
-    mov     %eax, %edi
+    push    %eax
     call    cercaValore
     mov     %ebp, %esp
     pop     %ebp

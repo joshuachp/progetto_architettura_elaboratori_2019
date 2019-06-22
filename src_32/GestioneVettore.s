@@ -65,37 +65,39 @@ STRINGA_OPZIONI:
 main:
     push    %ebp
     mov     %esp, %ebp
-    // Crea 16 byte di spazio per il contatore del ciclo e scanf
-    sub     $0x10, %esp
+    // Crea 8 byte di spazio per il contatore del ciclo e scanf
+    sub     $8, %esp
     // Carica e printa la stringa di inserimento
-    mov     LUNGHEZZA_VETTORE, %esi
-    lea     STRINGA_INSERIMENTO, %edi
-    xor     %eax, %eax
-    call    printf@PLT
+    push    LUNGHEZZA_VETTORE
+    push    $STRINGA_INSERIMENTO
+    call    printf
+    add     $8, %esp
     // Inizializza un ciclo for per l'inserimento
     movl    $0, -0x4(%ebp)
     jmp     main_insert_loop_condition
 main_insert_loop:
     // Carica e stampa la stringa di inserimento dell'elemento
-    mov     -0x4(%ebp), %esi
-    add     $1, %esi
-    lea     STRINGA_INSERIMENTO_ELEMENTO, %edi
-    xor     %eax, %eax
-    call    printf@PLT
+    mov     -0x4(%ebp), %edx
+    add     $1, %edx
+    push    %edx
+    push    $STRINGA_INSERIMENTO_ELEMENTO
+    call    printf
+    add     $8, %esp
     // Inserisce l'elemento nel vettore
     lea     VETTORE, %eax
-    xor     %ebx, %ebx
     mov     -0x4(%ebp), %ebx
-    lea     (%eax, %ebx, 4), %esi
-    lea     STRINGA_FORMAT_I, %edi
-    xor     %eax, %eax
-    call    scanf@PLT
+    lea     (%eax, %ebx, 4), %edx
+    sub     $8, %esp
+    push    %edx
+    push    $STRINGA_FORMAT_I
+    call    scanf
+    add     $16, %esp
     // Controllo il successo dello scanf
     cmp     $1, %eax
-    // Se scanf ha ricevuto un numero di inputs@PLT diverso da 1 esce dal programma
-    je     main_insert_success1
-    mov     $1, %edi
-    call    exit@PLT
+    // Se scanf ha ricevuto un numero di inputs diverso da 1 esce dal programma
+    je      main_insert_success1
+    push    $1
+    call    exit
 main_insert_success1:
     addl    $1, -0x4(%ebp)
 main_insert_loop_condition:
@@ -107,23 +109,27 @@ main_insert_loop_condition:
     call    stampaOpzioni
     // Ciclo per l'inserimento delle opzioni
 main_options_loop:
-    lea     STRINGA_OPZIONI, %edi
-    xor     %eax, %eax
-    call    puts@PLT
-    lea     -0x8(%ebp), %esi
-    lea     STRINGA_FORMAT_I, %edi
-    xor     %eax, %eax
-    call    scanf@PLT
+    push    $STRINGA_OPZIONI
+    call    puts
+    add     $4, %esp
+    lea     -0x8(%ebp), %edx
+    sub     $8, %esp
+    push    %edx
+    push    $STRINGA_FORMAT_I
+    call    scanf
+    add     $16, %esp
     // Controllo il successo dello scanf
     cmp     $1, %eax
-    // Se scanf ha ricevuto un numero di inputs@PLT diverso da 1 esce dal programma
+    // Se scanf ha ricevuto un numero di inputs diverso da 1 esce dal programma
     je      main_insert_success2
-    mov     $1, %edi
-    call    exit@PLT
+    push    $1
+    call    exit
 main_insert_success2:
     // Esegue l'opzione selezzionata
-    mov     -0x8(%ebp), %edi
+    mov     -0x8(%ebp), %edx
+    push    %edx
     call    eseguiOpzione
+    add     $4, %esp
     cmpl    $0, -0x8(%ebp)
     // Continua a richidere opzioni fino a che non riceve 0
     jne     main_options_loop

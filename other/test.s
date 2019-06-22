@@ -30,7 +30,7 @@ mult:
 	.size	mult, .-mult
 	.section	.rodata
 .LC0:
-	.string	"%i %i"
+	.string	"%i"
 	.text
 	.globl	main
 	.type	main, @function
@@ -46,16 +46,19 @@ main:
 	movl	%esp, %ebp
 	pushl	%ecx
 	.cfi_escape 0xf,0x3,0x75,0x7c,0x6
-	subl	$4, %esp
-	movl	$3, vector+12
-	pushl	$2
-	pushl	$2
-	call	mult
-	addl	$8, %esp
-	movl	%eax, vector+16
-	subl	$4, %esp
-	pushl	$6
-	pushl	$5
+	subl	$20, %esp
+	movl	$3, -12(%ebp)
+	movl	-12(%ebp), %eax
+	sall	$2, %eax
+	addl	$vector, %eax
+	subl	$8, %esp
+	pushl	%eax
+	pushl	$.LC0
+	call	__isoc99_scanf
+	addl	$16, %esp
+	movl	vector+12, %eax
+	subl	$8, %esp
+	pushl	%eax
 	pushl	$.LC0
 	call	printf
 	addl	$16, %esp

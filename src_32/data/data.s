@@ -30,7 +30,7 @@ LUNGHEZZA_VETTORE:
     @type (int *)
 */
     .global VETTORE
-    .align 8
+    .align 4
     .type VETTORE, @object
     .size VETTORE, 40
 VETTORE:
