@@ -26,8 +26,8 @@ calcolaMax:
     xor     %edx, %edx 
     xor     %eax, %eax
     // Settaggio massimo uguale vettore[0].
-    mov     VETTORE(%eip), %eax
-    lea     VETTORE(%eip), %ebx
+    mov     VETTORE, %eax
+    lea     VETTORE, %ebx
     jmp     calcoloMax_condizione
 calcolaMax_ciclo:
     cmp     (%ebx, %edx, 4), %eax
@@ -38,7 +38,7 @@ calcolaMax_end_if:
     incl    %edx
 calcoloMax_condizione:
     // Confronto contatore e lunghezza vettore.
-    cmp     LUNGHEZZA_VETTORE(%eip), %edx
+    cmp     LUNGHEZZA_VETTORE, %edx
     jl      calcolaMax_ciclo
     mov     %ebp, %esp
     pop     %ebp

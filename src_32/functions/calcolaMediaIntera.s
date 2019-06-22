@@ -27,11 +27,11 @@ calcolaMediaIntera:
     // Somma tutti i valori
     jmp     calcolaMediaIntera_condition
 calcolaMediaIntera_loop:
-    lea     VETTORE(%eip), %eax
+    lea     VETTORE, %eax
     add     (%eax, %ecx, 4), %ebx
     add     $1, %ecx
 calcolaMediaIntera_condition:
-    mov     LUNGHEZZA_VETTORE(%eip), %eax
+    mov     LUNGHEZZA_VETTORE, %eax
     cmp     %eax, %ecx
     jl      calcolaMediaIntera_loop
     mov     %ebx, %eax

@@ -28,12 +28,12 @@ cercaValore:
     // Condizione for
     jmp     cercaValore_condizione
 cercaValore_ciclo:
-    lea     VETTORE(%eip), %eax
+    lea     VETTORE, %eax
     cmp     (%eax, %ecx, 4), %edi
     je      cercaValore_trovato
     inc     %ecx
 cercaValore_condizione:
-    cmp     LUNGHEZZA_VETTORE(%eip), %ecx
+    cmp     LUNGHEZZA_VETTORE, %ecx
     jl      cercaValore_ciclo
     // vaore non trovato
     mov     $-1, %eax
