@@ -25,8 +25,8 @@ calcolaMin:
     // Contatore ciclo.
     xor     %edx, %edx 
     // Settaggio massimo uguale vettore[0].
-    mov     VETTORE(), %eax
-    lea     VETTORE(), %ebx
+    mov     VETTORE, %eax
+    lea     VETTORE, %ebx
     jmp     calcoloMin_condizione
 calcolaMin_ciclo:
     cmp     (%ebx, %edx, 4), %eax
@@ -37,7 +37,7 @@ calcolaMin_end_if:
     incl    %edx
 calcoloMin_condizione:
     // Confronto contatore e lunghezza vettore.
-    cmp     LUNGHEZZA_VETTORE(), %edx
+    cmp     LUNGHEZZA_VETTORE, %edx
     jl      calcolaMin_ciclo
     mov     %ebp, %esp
     pop     %ebp

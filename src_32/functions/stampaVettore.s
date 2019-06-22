@@ -37,7 +37,7 @@ stampaVettore:
     // Condizione se 1 salta ad inverso altrienti rimani
     je      stampaVettore_inverso
     // Stampa vettore
-    lea     STRINGA_VALORI_INSERIRTI(), %edi
+    lea     STRINGA_VALORI_INSERIRTI, %edi
     xor     %eax, %eax
     call    puts@PLT
     // Contatore ciclo
@@ -47,29 +47,29 @@ stampaVettore:
 stampaVettore_ciclo:
     // Stampo indice e valore del VETTORE
     mov     -4(%ebp), %ecx
-    lea     VETTORE(), %eax
+    lea     VETTORE, %eax
     mov     (%eax, %ecx, 4), %edx
     mov     %ecx, %esi
     inc     %esi
-    lea     STRINGA_ELENCO_VALORI(), %edi
+    lea     STRINGA_ELENCO_VALORI, %edi
     xor     %eax, %eax
     call    printf@PLT
     // Incremento contatore
     incl    -4(%ebp)
 stampaVettore_condizione:
     mov     -4(%ebp), %ecx
-    cmp     LUNGHEZZA_VETTORE(), %ecx
+    cmp     LUNGHEZZA_VETTORE, %ecx
     // Se è minore della lunghezza continuo il ciclo
     jl      stampaVettore_ciclo
     // Ritorno
     jmp     stampaVettore_return
 stampaVettore_inverso:
     // Stampa vettore inverso
-    lea     STRINGA_VALORI_INSERIRTI_INVERSO(), %edi
+    lea     STRINGA_VALORI_INSERIRTI_INVERSO, %edi
     xor     %eax, %eax
     call    puts@PLT
     // Contatore ciclo
-    mov     LUNGHEZZA_VETTORE(), %ecx
+    mov     LUNGHEZZA_VETTORE, %ecx
     dec     %ecx
     mov     %ecx, -4(%ebp)
     // Condizione for inverso
@@ -77,11 +77,11 @@ stampaVettore_inverso:
 stampaVettore_inverso_ciclo:
     // Stampo indice e valore del VETTORE inverso
     mov     -4(%ebp), %ecx
-    lea     VETTORE(), %eax
+    lea     VETTORE, %eax
     mov     (%eax, %ecx, 4), %edx
     mov     %ecx, %esi
     inc     %esi
-    lea     STRINGA_ELENCO_VALORI(), %edi
+    lea     STRINGA_ELENCO_VALORI, %edi
     xor     %eax, %eax
     call    printf@PLT
     // Decremento contatore

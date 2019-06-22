@@ -32,7 +32,7 @@ STRINGA_OPZIONI:
 stampaOpzioni:
     push    %ebp
     mov     %esp, %ebp
-    lea     STRINGA_OPZIONI(), %edi
+    lea     STRINGA_OPZIONI, %edi
     xor     %eax, %eax
     call    puts@PLT  
     mov     %ebp, %esp

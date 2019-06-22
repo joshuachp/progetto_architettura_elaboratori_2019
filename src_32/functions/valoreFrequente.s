@@ -33,7 +33,7 @@ valoreFrequente:
     jmp     valoreFrequente_condizione1
 valoreFrequente_ciclo1:
     // Scelta del vettore.
-    lea     VETTORE(), %ebx 
+    lea     VETTORE, %ebx 
     mov     (%ebx, %ecx, 4), %eax 
     // Contatore 2° ciclo.
     xor     %edx, %edx
@@ -48,7 +48,7 @@ valoreFrequente_end_if1:
     // Incremento contatore 2.
     inc     %edx
 valoreFrequente_condizione2:
-    cmp     LUNGHEZZA_VETTORE(), %edx
+    cmp     LUNGHEZZA_VETTORE, %edx
     jl      valoreFrequente_ciclo2
     mov     -8(%ebp), %eax
     cmp     -4(%ebp), %eax
@@ -61,7 +61,7 @@ valoreFrequente_end_if2:
     movl    $0, -8(%ebp)
     inc     %ecx
 valoreFrequente_condizione1:
-    cmp     LUNGHEZZA_VETTORE(), %ecx
+    cmp     LUNGHEZZA_VETTORE, %ecx
     jl      valoreFrequente_ciclo1
     // Ritorno valore più frequente.
     mov     -12(%ebp), %eax

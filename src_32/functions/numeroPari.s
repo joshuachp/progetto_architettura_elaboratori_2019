@@ -31,7 +31,7 @@ numeroPari:
     // Condizione del for.
     jmp     numeroPari_condizione
 numeroPari_for:
-    lea     VETTORE(), %edx 
+    lea     VETTORE, %edx 
     mov     (%edx, %ecx, 4), %eax 
     xor     %edx, %edx
     div     %ebx
@@ -41,7 +41,7 @@ numeroPari_for:
     je      numeroPari_condizione
     incl    -4(%ebp)
 numeroPari_condizione:
-    mov     LUNGHEZZA_VETTORE(), %eax
+    mov     LUNGHEZZA_VETTORE, %eax
     cmp     %eax, %ecx
     // Cicla gli elementi dell'array.
     jl      numeroPari_for

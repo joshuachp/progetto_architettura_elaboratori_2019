@@ -190,7 +190,7 @@ eseguiOpzione:
     jmp     eseguiOpzione_switch_default
 eseguiOpzione_switch_0:
     // Stampa la stringa di uscita
-    lea     STRINGA_USCITA(), %edi
+    lea     STRINGA_USCITA, %edi
     xor     %eax, %eax
     call    puts@PLT
     jmp     eseguiOpzione_exit
@@ -209,23 +209,23 @@ eseguiOpzione_switch_3:
     call    numeroPari
     mov     %eax, -0x8(%ebp)
     mov     %eax, %esi
-    lea     STRINGA_NUMERI_PARI(), %edi
+    lea     STRINGA_NUMERI_PARI, %edi
     xor     %eax, %eax
     call    printf@PLT
-    mov     LUNGHEZZA_VETTORE(), %esi
+    mov     LUNGHEZZA_VETTORE, %esi
     mov     -0x8(%ebp), %ebx
     sub     %ebx, %esi
-    lea     STRINGA_NUMERI_DISPARI(), %edi
+    lea     STRINGA_NUMERI_DISPARI, %edi
     xor     %eax, %eax
     call    printf@PLT
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_4:
     // Riceve in input un inrero e stampa laposizione o se non è contenuti in VETTORE
-    lea     STRINGA_INTERO_DA_CERCARE(), %edi
+    lea     STRINGA_INTERO_DA_CERCARE, %edi
     xor     %eax, %eax
     call    puts@PLT
     lea     -0xb(%ebp), %esi
-    lea     STRINGA_FORMAT_I(), %edi
+    lea     STRINGA_FORMAT_I, %edi
     xor     %eax, %eax
     call    scanf@PLT
     // Se scanf ha ricevuto un numero di inputs@PLT diverso da 1 esce dal programma
@@ -243,13 +243,13 @@ eseguiOpzione_insert_success1:
     add     $1, %eax
     mov     %eax, %edx
     mov     -0xb(%ebp), %esi
-    lea     STRINGA_POSIZIONE_VALORE(), %edi
+    lea     STRINGA_POSIZIONE_VALORE, %edi
     xor     %eax, %eax
     call    printf@PLT
     jmp     eseguiOpzione_switch_4_endif
 eseguiOpzione_switch_4_if:
     mov     -0xb(%ebp), %esi
-    lea     STRINGA_VALORE_NON_TROVATO(), %edi
+    lea     STRINGA_VALORE_NON_TROVATO, %edi
     call    printf@PLT
 eseguiOpzione_switch_4_endif:
     jmp     eseguiOpzione_exit
@@ -257,7 +257,7 @@ eseguiOpzione_switch_5:
     // Calcola il valore massimo e lo stampa a video
     call    calcolaMax
     mov     %eax, %esi
-    lea     STRINGA_VALORE_MAX(), %edi
+    lea     STRINGA_VALORE_MAX, %edi
     xor     %eax, %eax
     call    printf@PLT
     jmp     eseguiOpzione_exit
@@ -266,7 +266,7 @@ eseguiOpzione_switch_6:
     call     posizioneMax
     add     $1, %eax
     mov     %eax, %esi
-    lea     STRINGA_POSIZIONE_MAX(), %edi
+    lea     STRINGA_POSIZIONE_MAX, %edi
     xor     %eax, %eax
     call    printf@PLT
     jmp     eseguiOpzione_exit
@@ -274,7 +274,7 @@ eseguiOpzione_switch_7:
     // Calcola il valore massimo e lo stampa a video
     call    calcolaMin
     mov     %eax, %esi
-    lea     STRINGA_VALORE_MIN(), %edi
+    lea     STRINGA_VALORE_MIN, %edi
     xor     %eax, %eax
     call    printf@PLT
     jmp     eseguiOpzione_exit
@@ -283,7 +283,7 @@ eseguiOpzione_switch_8:
     call     posizioneMin
     add     $1, %eax
     mov     %eax, %esi
-    lea     STRINGA_POSIZIONE_MIN(), %edi
+    lea     STRINGA_POSIZIONE_MIN, %edi
     xor     %eax, %eax
     call    printf@PLT
     jmp     eseguiOpzione_exit
@@ -291,7 +291,7 @@ eseguiOpzione_switch_9:
     // Calcola il valore più frequente e lo stampa a video
     call    valoreFrequente
     mov     %eax, %esi
-    lea     STRINGA_VALORE_FREQ(), %edi
+    lea     STRINGA_VALORE_FREQ, %edi
     xor     %eax, %eax
     call    printf@PLT
     jmp     eseguiOpzione_exit
@@ -299,7 +299,7 @@ eseguiOpzione_switch_10:
     // Calcola la media e la stampa a video
     call    calcolaMediaIntera
     mov     %eax, %esi
-    lea     STRINGA_MEDIA(), %edi
+    lea     STRINGA_MEDIA, %edi
     xor     %eax, %eax
     call    printf@PLT
     jmp     eseguiOpzione_exit
@@ -307,7 +307,7 @@ eseguiOpzione_switch_m1:
     call    stampaOpzioni
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_default:
-    lea     STRINGA_OPT_NON_SUPPORTATA(), %edi
+    lea     STRINGA_OPT_NON_SUPPORTATA, %edi
     xor     %eax, %eax
     call    puts@PLT
 eseguiOpzione_exit:
