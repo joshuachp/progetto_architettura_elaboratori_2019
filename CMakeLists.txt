@@ -94,10 +94,10 @@ set_property(SOURCE ${ASSEMBLY_MAIN_32} PROPERTY LANGUAGE C)
 set_property(SOURCE ${ASSEMBLY_LIB_32} PROPERTY LANGUAGE C)
 
 add_library(gestione_vettore_lib_32 ${ASSEMBLY_LIB_32})
-target_compile_options(gestione_vettore_lib_32 PRIVATE -fno-pie -m32)
+set_target_properties(gestione_vettore_lib_32 PROPERTIES COMPILE_OPTIONS -m32 LINK_OPTIONS -m32)
 
 add_executable(main_32  ${ASSEMBLY_MAIN_32})
-target_compile_options(main_32 PRIVATE -fno-pie -m32)
+set_target_properties(main_32 PROPERTIES COMPILE_OPTIONS -m32 LINK_OPTIONS -m32)
 target_link_libraries(main_32 gestione_vettore_lib_32)
 
 # C vs Assembly
