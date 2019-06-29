@@ -30,69 +30,70 @@ STRINGA_VALORI_INSERIRTI_INVERSO:
 .type stampaVettore, @function
 
 stampaVettore:
-    push    %rbp
-    mov     %rsp, %rbp
-    sub     $8, %rsp
-    cmp     $1, %rdi
+    push    %ebp
+    mov     %esp, %ebp
+    sub     $4, %esp
+    mov     8(%ebp), %edx
+    cmp     $1, %dl
     // Condizione se 1 salta ad inverso altrienti rimani
     je      stampaVettore_inverso
     // Stampa vettore
-    lea     STRINGA_VALORI_INSERIRTI(%rip), %rdi
-    xor     %rax, %rax
-    call    puts@PLT
+    push    $STRINGA_VALORI_INSERIRTI
+    call    puts
+    add     $4, %esp
     // Contatore ciclo
-    movl     $0, -4(%rbp)
+    movl     $0, -4(%ebp)
     // Condizione for
     jmp stampaVettore_condizione
 stampaVettore_ciclo:
     // Stampo indice e valore del VETTORE
-    xor     %rcx, %rcx
-    mov     -4(%rbp), %ecx
-    lea     VETTORE(%rip), %rax
-    mov     (%rax, %rcx, 4), %edx
-    mov     %ecx, %esi
-    inc     %esi
-    lea     STRINGA_ELENCO_VALORI(%rip), %rdi
-    xor     %rax, %rax
-    call    printf@PLT
+    mov     -4(%ebp), %ecx
+    lea     VETTORE, %eax
+    mov     (%eax, %ecx, 4), %edx
+    inc     %ecx
+    push    %edx
+    push    %ecx
+    push    $STRINGA_ELENCO_VALORI
+    call    printf
+    add     $12, %esp
     // Incremento contatore
-    incl    -4(%rbp)
+    incl    -4(%ebp)
 stampaVettore_condizione:
-    mov     -4(%rbp), %ecx
-    cmp     LUNGHEZZA_VETTORE(%rip), %ecx
+    mov     -4(%ebp), %ecx
+    cmp     LUNGHEZZA_VETTORE, %ecx
     // Se è minore della lunghezza continuo il ciclo
     jl      stampaVettore_ciclo
     // Ritorno
     jmp     stampaVettore_return
 stampaVettore_inverso:
     // Stampa vettore inverso
-    lea     STRINGA_VALORI_INSERIRTI_INVERSO(%rip), %rdi
-    xor     %rax, %rax
-    call    puts@PLT
+    push    $STRINGA_VALORI_INSERIRTI_INVERSO
+    call    puts
+    add     $4, %esp
     // Contatore ciclo
-    mov     LUNGHEZZA_VETTORE(%rip), %ecx
+    mov     LUNGHEZZA_VETTORE, %ecx
     dec     %ecx
-    mov     %ecx, -4(%rbp)
+    mov     %ecx, -4(%ebp)
     // Condizione for inverso
     jmp stampaVettore_inverso_condizione
 stampaVettore_inverso_ciclo:
     // Stampo indice e valore del VETTORE inverso
-    xor     %rcx, %rcx
-    mov     -4(%rbp), %ecx
-    lea     VETTORE(%rip), %rax
-    mov     (%rax, %rcx, 4), %edx
-    mov     %ecx, %esi
-    inc     %esi
-    lea     STRINGA_ELENCO_VALORI(%rip), %rdi
-    xor     %rax, %rax
-    call    printf@PLT
+    mov     -4(%ebp), %ecx
+    lea     VETTORE, %eax
+    mov     (%eax, %ecx, 4), %edx
+    inc     %ecx
+    push    %edx
+    push    %ecx
+    push    $STRINGA_ELENCO_VALORI
+    call    printf
+    add     $12, %esp
     // Decremento contatore
-    decl    -4(%rbp)
+    decl    -4(%ebp)
 stampaVettore_inverso_condizione:
-    cmp     $0, -4(%rbp)
+    cmpl    $0, -4(%ebp)
     // Se è maggiore o uguale a 0 continuo il ciclo
     jge     stampaVettore_inverso_ciclo
 stampaVettore_return:
-    mov     %rbp, %rsp
-    pop     %rbp
+    mov     %ebp, %esp
+    pop     %ebp
     ret

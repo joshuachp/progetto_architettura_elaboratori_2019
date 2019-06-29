@@ -30,11 +30,10 @@ STRINGA_OPZIONI:
     .type stampaOpzioni, @function
 
 stampaOpzioni:
-    push    %rbp
-    mov     %rsp, %rbp
-    lea     STRINGA_OPZIONI(%rip), %rdi
-    xor     %rax, %rax
-    call    puts@PLT  
-    mov     %rbp, %rsp
-    pop     %rbp
+    push    %ebp
+    mov     %esp, %ebp
+    push    $STRINGA_OPZIONI
+    call    puts
+    mov     %ebp, %esp
+    pop     %ebp
     ret

@@ -145,172 +145,176 @@ STRINGA_MEDIA:
     .type eseguiOpzione, @function
 
 eseguiOpzione:
-    push    %rbp
-    mov     %rsp, %rbp
-    sub     $0x10, %rsp
+    push    %ebp
+    mov     %esp, %ebp
+    sub     $8, %esp
+    mov     8(%ebp), %edx
     // Variabile booleana stampareOrdineInverso
-    movb    $1, -0x1(%rbp)
-    cmp     $0, %edi
+    movb    $1, -1(%ebp)
+    cmp     $0, %edx
     // Case uscita dall'operazione
     je      eseguiOpzione_switch_0
-    cmp     $1, %edi
+    cmp     $1, %edx
     // Case stampa VETTORE
     je      eseguiOpzione_switch_1
-    cmp     $2, %edi
+    cmp     $2, %edx
     // Case stampa VETTORE iverso
     je      eseguiOpzione_switch_2
-    cmp     $3, %edi
+    cmp     $3, %edx
     // Case stampa numeri pari e dispari
     je      eseguiOpzione_switch_3
-    cmp     $4, %edi
+    cmp     $4, %edx
     // Case cerca valore in VETTORE
     je      eseguiOpzione_switch_4
-    cmp     $5, %edi
+    cmp     $5, %edx
     // Case valore massimo
     je      eseguiOpzione_switch_5
-    cmp     $6, %edi
+    cmp     $6, %edx
     // Case posizione massimo
     je      eseguiOpzione_switch_6
-    cmp     $7, %edi
+    cmp     $7, %edx
     // Case valore minimo
     je      eseguiOpzione_switch_7
-    cmp     $8, %edi
+    cmp     $8, %edx
     // Case posizione minimo
     je      eseguiOpzione_switch_8
-    cmp     $9, %edi
+    cmp     $9, %edx
     // Case valore più frequente
     je      eseguiOpzione_switch_9
-    cmp     $10, %edi
+    cmp     $10, %edx
     // Case media intera
     je      eseguiOpzione_switch_10
-    cmp     $-1, %edi
+    cmp     $-1, %edx
     // Case stampa opzioni
     je      eseguiOpzione_switch_m1
     // Default case opzione non supportata
     jmp     eseguiOpzione_switch_default
 eseguiOpzione_switch_0:
     // Stampa la stringa di uscita
-    lea     STRINGA_USCITA(%rip), %rdi
-    xor     %rax, %rax
-    call    puts@PLT
+    push    $STRINGA_USCITA
+    call    puts
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_1:
     // Imposta stampaOrdineInverso a false e continua al case stampa vettore
-    movb     $0, -0x1(%rbp)
+    movb     $0, -1(%ebp)
 eseguiOpzione_switch_2:
     // Stampa il vettore in ordine inverso se stampaOrdineInverso è true se no stampa il vettore
-    xor     %rax, %rax
-    movb    -0x1(%rbp), %al
-    mov     %rax, %rdi
+    xor     %eax, %eax
+    movb    -1(%ebp), %al
+    push    %eax
     call    stampaVettore
+    add     $4, %esp
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_3:
     // Conta il numero di pari e lo sottrae al numero totale per i dispari
     call    numeroPari
-    mov     %eax, -0x8(%rbp)
-    mov     %eax, %esi
-    lea     STRINGA_NUMERI_PARI(%rip), %rdi
-    xor     %rax, %rax
-    call    printf@PLT
-    mov     LUNGHEZZA_VETTORE(%rip), %esi
-    mov     -0x8(%rbp), %ebx
-    sub     %ebx, %esi
-    lea     STRINGA_NUMERI_DISPARI(%rip), %rdi
-    xor     %rax, %rax
-    call    printf@PLT
+    mov     %eax, -8(%ebp)
+    push    %eax
+    push    $STRINGA_NUMERI_PARI
+    call    printf
+    add     $8, %esp
+    mov     LUNGHEZZA_VETTORE, %eax
+    sub     -8(%ebp), %eax
+    push    %eax
+    push    $STRINGA_NUMERI_DISPARI
+    call    printf
+    add     $8, %esp
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_4:
     // Riceve in input un inrero e stampa laposizione o se non è contenuti in VETTORE
-    lea     STRINGA_INTERO_DA_CERCARE(%rip), %rdi
-    xor     %rax, %rax
-    call    puts@PLT
-    lea     -0x8(%rbp), %rsi
-    lea     STRINGA_FORMAT_I(%rip), %rdi
-    xor     %rax, %rax
-    call    scanf@PLT
-    // Se scanf ha ricevuto un numero di inputs@PLT diverso da 1 esce dal programma
-    cmp     $1, %rax
+    push    $STRINGA_INTERO_DA_CERCARE
+    call    puts
+    add     $4, %esp
+    lea     -8(%ebp), %eax
+    push    %eax
+    push    $STRINGA_FORMAT_I
+    call    scanf
+    add     $8, %esp
+    // Se scanf ha ricevuto un numero di inputs diverso da 1 esce dal programma
+    cmp     $1, %eax
     je      eseguiOpzione_insert_success1
-    mov     $1, %rdi
-    call    exit@PLT
+    push    $1
+    call    exit
 eseguiOpzione_insert_success1:
-    xor     %rbx, %rbx
-    mov     -0x8(%rbp), %ebx
-    mov     %rbx, %rdi
+    mov     -8(%ebp), %ebx
+    push    %ebx
     call    cercaValore
+    add     $4, %esp
     cmp     $0, %eax
     jl      eseguiOpzione_switch_4_if
     add     $1, %eax
-    mov     %eax, %edx
-    mov     -0x8(%rbp), %esi
-    lea     STRINGA_POSIZIONE_VALORE(%rip), %rdi
-    xor     %rax, %rax
-    call    printf@PLT
+    push    %eax
+    mov     -8(%ebp), %eax
+    push    %eax
+    push    $STRINGA_POSIZIONE_VALORE
+    call    printf
+    add     $12, %esp
     jmp     eseguiOpzione_switch_4_endif
 eseguiOpzione_switch_4_if:
-    mov     -0x8(%rbp), %esi
-    lea     STRINGA_VALORE_NON_TROVATO(%rip), %rdi
-    call    printf@PLT
+    mov     -8(%ebp), %eax
+    push    %eax
+    push    $STRINGA_VALORE_NON_TROVATO
+    call    printf
+    add     $8, %esp
 eseguiOpzione_switch_4_endif:
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_5:
     // Calcola il valore massimo e lo stampa a video
     call    calcolaMax
-    mov     %rax, %rsi
-    lea     STRINGA_VALORE_MAX(%rip), %rdi
-    xor     %rax, %rax
-    call    printf@PLT
+    push    %eax
+    push    $STRINGA_VALORE_MAX
+    call    printf
+    add     $8, %esp
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_6:
     // Stampa a video la posizione del valore massimo inserito
     call     posizioneMax
-    add     $1, %rax
-    mov     %rax, %rsi
-    lea     STRINGA_POSIZIONE_MAX(%rip), %rdi
-    xor     %rax, %rax
-    call    printf@PLT
+    add     $1, %eax
+    push    %eax
+    push    $STRINGA_POSIZIONE_MAX
+    call    printf
+    add     $8, %esp
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_7:
     // Calcola il valore massimo e lo stampa a video
     call    calcolaMin
-    mov     %rax, %rsi
-    lea     STRINGA_VALORE_MIN(%rip), %rdi
-    xor     %rax, %rax
-    call    printf@PLT
+    push    %eax
+    push    $STRINGA_VALORE_MIN
+    call    printf
+    add     $8, %esp
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_8:
     // Stampa a video la posizione del valore minimo inserito
-    call     posizioneMin
-    add     $1, %rax
-    mov     %rax, %rsi
-    lea     STRINGA_POSIZIONE_MIN(%rip), %rdi
-    xor     %rax, %rax
-    call    printf@PLT
+    call    posizioneMin
+    add     $1, %eax
+    push    %eax
+    push    $STRINGA_POSIZIONE_MIN
+    call    printf
+    add     $8, %esp
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_9:
     // Calcola il valore più frequente e lo stampa a video
     call    valoreFrequente
-    mov     %rax, %rsi
-    lea     STRINGA_VALORE_FREQ(%rip), %rdi
-    xor     %rax, %rax
-    call    printf@PLT
+    push    %eax
+    push    $STRINGA_VALORE_FREQ
+    call    printf
+    add     $8, %esp
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_10:
     // Calcola la media e la stampa a video
     call    calcolaMediaIntera
-    mov     %rax, %rsi
-    lea     STRINGA_MEDIA(%rip), %rdi
-    xor     %rax, %rax
-    call    printf@PLT
+    push    %eax
+    push    $STRINGA_MEDIA
+    call    printf
+    add     $8, %esp
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_m1:
     call    stampaOpzioni
     jmp     eseguiOpzione_exit
 eseguiOpzione_switch_default:
-    lea     STRINGA_OPT_NON_SUPPORTATA(%rip), %rdi
-    xor     %rax, %rax
-    call    puts@PLT
+    push    $STRINGA_OPT_NON_SUPPORTATA
+    call    puts
 eseguiOpzione_exit:
-    mov     %rbp, %rsp
-    pop     %rbp
+    mov     %ebp, %esp
+    pop     %ebp
     ret
