@@ -7,7 +7,7 @@ stages:
 build:
   stage: build
   before_script:
-    - apt update && apt -y install cmake gcc g++ g++-multilib gcc-multilib
+    - apt update && apt -y install cmake
   script:
     - mkdir -p build
     - cd build

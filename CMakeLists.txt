@@ -72,33 +72,33 @@ add_test(run_all_tests run_tests)
 
 # 32 bit vesion
 
-set( ASSEMBLY_MAIN_32 src_32/GestioneVettore.s)
-
-set( ASSEMBLY_LIB_32
-    src_32/data/data.s
-    src_32/functions/calcolaMax.s 
-    src_32/functions/calcolaMediaIntera.s
-    src_32/functions/calcolaMin.s
-    src_32/functions/cercaValore.s
-    src_32/functions/eseguiOpzione.s
-    src_32/functions/numeroPari.s
-    src_32/functions/posizioneMax.s
-    src_32/functions/posizioneMin.s
-    src_32/functions/stampaOpzioni.s
-    src_32/functions/stampaVettore.s
-    src_32/functions/valoreFrequente.s
-)
-
-set_property(SOURCE ${ASSEMBLY_MAIN_32} PROPERTY LANGUAGE C)
-set_property(SOURCE ${ASSEMBLY_LIB_32} PROPERTY LANGUAGE C)
-
-add_library(gestione_vettore_lib_32 ${ASSEMBLY_LIB_32})
-set_target_properties(gestione_vettore_lib_32 PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
-
-add_executable(main_32  ${ASSEMBLY_MAIN_32})
-set_target_properties(main_32 PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
-target_link_libraries(main_32 gestione_vettore_lib_32)
-
+# set( ASSEMBLY_MAIN_32 src_32/GestioneVettore.s)
+# 
+# set( ASSEMBLY_LIB_32
+#     src_32/data/data.s
+#     src_32/functions/calcolaMax.s 
+#     src_32/functions/calcolaMediaIntera.s
+#     src_32/functions/calcolaMin.s
+#     src_32/functions/cercaValore.s
+#     src_32/functions/eseguiOpzione.s
+#     src_32/functions/numeroPari.s
+#     src_32/functions/posizioneMax.s
+#     src_32/functions/posizioneMin.s
+#     src_32/functions/stampaOpzioni.s
+#     src_32/functions/stampaVettore.s
+#     src_32/functions/valoreFrequente.s
+# )
+# 
+# set_property(SOURCE ${ASSEMBLY_MAIN_32} PROPERTY LANGUAGE C)
+# set_property(SOURCE ${ASSEMBLY_LIB_32} PROPERTY LANGUAGE C)
+# 
+# add_library(gestione_vettore_lib_32 ${ASSEMBLY_LIB_32})
+# set_target_properties(gestione_vettore_lib_32 PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
+# 
+# add_executable(main_32  ${ASSEMBLY_MAIN_32})
+# set_target_properties(main_32 PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
+# target_link_libraries(main_32 gestione_vettore_lib_32)
+ 
 # C vs Assembly
 
 add_library(gestione_vettore_lib_c test/time/gestioneVettore.c)
