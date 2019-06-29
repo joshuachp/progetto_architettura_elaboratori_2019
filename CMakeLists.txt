@@ -5,6 +5,8 @@ set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
 
+set(CMAKE_C_COMPILER /usr/bin/gcc)
+set(CMAKE_CXX_COMPILER /usr/bin/g++)
 
 set( ASSEMBLY_MAIN src/GestioneVettore.s)
 
@@ -94,10 +96,10 @@ set_property(SOURCE ${ASSEMBLY_MAIN_32} PROPERTY LANGUAGE C)
 set_property(SOURCE ${ASSEMBLY_LIB_32} PROPERTY LANGUAGE C)
 
 add_library(gestione_vettore_lib_32 ${ASSEMBLY_LIB_32})
-set_target_properties(gestione_vettore_lib_32 PROPERTIES COMPILE_OPTIONS -m32 LINK_OPTIONS -m32)
+set_target_properties(gestione_vettore_lib_32 PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
 
 add_executable(main_32  ${ASSEMBLY_MAIN_32})
-set_target_properties(main_32 PROPERTIES COMPILE_OPTIONS -m32 LINK_OPTIONS -m32)
+set_target_properties(main_32 PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
 target_link_libraries(main_32 gestione_vettore_lib_32)
 
 # C vs Assembly
