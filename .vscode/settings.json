@@ -1,7 +1,3 @@
 {
-  "cmake.configureOnOpen": true,
-  "files.associations": {
-    "stdbool.h": "c",
-    "gestione_vettore_c.h": "c"
-  }
+  "cmake.configureOnOpen": true
 }
