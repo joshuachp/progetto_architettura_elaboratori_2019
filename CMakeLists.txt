@@ -102,3 +102,12 @@ add_executable(main_32  ${ASSEMBLY_MAIN_32})
 target_compile_options(main_32 PRIVATE -fno-pie -m32)
 target_link_options(main_32 PRIVATE -fno-pie -m32)
 target_link_libraries(main_32 gestione_vettore_lib_32)
+
+# C vs Assembly
+
+add_library(gestione_vettore_lib_c test/time/gestioneVettore.c)
+
+add_executable(time_test test/time/time.c)
+target_link_libraries(time_test gestione_vettore_lib)
+target_link_libraries(time_test gestione_vettore_lib_c)
+add_test(time_test_assembly time_test)
