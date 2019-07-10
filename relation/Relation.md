@@ -8,23 +8,9 @@ Il programma utilizza diverse funzioni per eseguire operazioni tra cui il calcol
 
 ## Variabili
 
-Per questo progetto, dopo aver esaminato attentamente il file di programmazione fornitoci e le relative
-funzioni al suo interno, abbiamo deciso di implementare i numeri che andranno a comporre il vettore
-come variali globali, dato che queste ultime non verranno modificate dalle suddette funzioni, inoltre grazie
-a ciò siamo riusciti a rendere più agevole la realizzazione delle successive funzioni.
-Nel file main dopo l'inserimento della lunghezza del vettore e dei suoi componenti, ci verrà chiesto se si
-vuole eseguire una delle 10 funzioni presenti all'interno del programma, se non si vorrà eseguire nessuna
-opzione basterà inserire in input il valore zero altrimenti si dovrà inserire 1.
-Fatto ciò il file main richiamerà il file di stampaOpzioni il quale mostrerà all'utente un interfaccia in cui
-ci saranno scritte tutte le funzioni affiancate al relativo numero da digitare per la loro scelta.
-Dopo la scelta della funzione il file main farà una cal al file eseguiOpzioni, nel quale utilizzando il dato
-precedentemente preso nel file stampaOpzioni e salvato nel registro %EAX o %rax (in base alla versione
-di utilizzo), utilizzerà una struttura case-switch, per richiamare il file di cui si ha bisogno per la
-realizzazione dell’operazione richiesta dall'utente.
-Per ogni operazione è stato creato un file apposito nel quale, il risultato verrà salvato nel registro %EAX o
-%rax per poi poter essere passato al file eseguiOpzione che si occuperà di stamparne a video il risultato,
-dopo la stampa sarà presente un jump che porterà alla chiusura del suddetto file, per tornare nel main nel
-quale come detto precedentemente inserendo il valore 1 si potrà scegliere una nuova opzione, altrimenti
+Per questo progetto, dopo aver esaminato attentamente il file di programmazione fornitoci e le relative funzioni al suo interno, abbiamo deciso di implementare i numeri che andranno a comporre il vettore come variali globali, dato che queste ultime non verranno modificate dalle suddette funzioni, inoltre grazie a ciò siamo riusciti a rendere più agevole la realizzazione delle successive funzioni. Nel file main dopo l'inserimento della lunghezza del vettore e dei suoi componenti, ci verrà chiesto se si vuole eseguire una delle 10 funzioni presenti all'interno del programma, se non si vorrà eseguire nessuna opzione basterà inserire in input il valore zero altrimenti si dovrà inserire 1.
+Fatto ciò il file main richiamerà il file di stampaOpzioni il quale mostrerà all'utente un interfaccia in cui ci saranno scritte tutte le funzioni affiancate al relativo numero da digitare per la loro scelta. Dopo la scelta della funzione il file main farà una cal al file eseguiOpzioni, nel quale utilizzando il dato precedentemente preso nel file stampaOpzioni e salvato nel registro %EAX o %rax (in base alla versione
+di utilizzo), utilizzerà una struttura case-switch, per richiamare il file di cui si ha bisogno per la realizzazione dell’operazione richiesta dall'utente. Per ogni operazione è stato creato un file apposito nel quale, il risultato verrà salvato nel registro %EAX o %rax per poi poter essere passato al file eseguiOpzione che si occuperà di stamparne a video il risultato, dopo la stampa sarà presente un jump che porterà alla chiusura del suddetto file, per tornare nel main nel quale come detto precedentemente inserendo il valore 1 si potrà scegliere una nuova opzione, altrimenti
 se si inserirà 0, ciò porterà alla fine dell’esecuzione del programma.
 
 ## Argomenti e return delle funzioni
@@ -245,7 +231,7 @@ int valoreFrequente (void) {
 
 ### Calcola media
 
-La funzione **calcolaMedia** è una funzione semplice che itera gli elementi di **VETTORE**, li somma e divide la somma per il suo numero di elementi cosi da calcolare la media.
+La funzione **calcolaMedia** è una funzione semplice che itera gli elementi di **VETTORE**, li somma e divide la somma per il suo numero di elementi cosi da calcolare la media. In questo caso per la divisione utilizziamo idiv in quanto i numeri di **VETTORE** possono essere negativi.
 
 ![](images/calcola_media.png)
 
