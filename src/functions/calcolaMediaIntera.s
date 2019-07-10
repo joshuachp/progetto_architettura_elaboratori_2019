@@ -36,8 +36,10 @@ calcolaMediaIntera_condition:
     jl      calcolaMediaIntera_loop
     mov     %rbx, %rax
     xor     %edx, %edx
+    // Inverte il dividendo
+    cdq
     // Divide la somma per il numero di valori
-    div     %ecx
+    idiv    %ecx
     mov     %rbp, %rsp
     pop     %rbp
     ret
