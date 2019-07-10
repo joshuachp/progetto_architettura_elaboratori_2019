@@ -100,6 +100,11 @@ TEST(calcola_media_intera, calcola_media_intera_equal) {
     ASSERT_EQ(calcolaMediaIntera(), num);
 }
 
+TEST(calcola_media_intera, calcola_media_intera_negative) {
+    int num = initialize_equal_VETTORE(-5);
+    ASSERT_EQ(calcolaMediaIntera(), num);
+}
+
 TEST(calcola_media_intera, calcola_media_intera_incremental) {
     initialize_incremental_VETTORE();
     int mean = LUNGHEZZA_VETTORE - 1;
